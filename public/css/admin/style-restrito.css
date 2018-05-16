@@ -1,0 +1,52 @@
+.caixa p{
+	font-size: 16px;
+}
+.caixa h2{
+	font-size: 20px;
+	color: #12A3D7;
+	margin-bottom: 20px;
+}
+.caixa small{
+	color: #90a4ae !important;
+	font-weight: bold;
+}
+.caixa{
+	box-shadow: 10px 10px 30px 5px rgba(0,0,0,.2);
+	border-radius: 5px;
+	padding: 20px;
+	background-color: white;
+	font-family: 'Rubik', sans-serif;
+}
+.content-header>.breadcrumb{
+	position: relative;
+	float: left;
+    font-size: 18px;
+    padding: 7px 5px;
+    margin-bottom: 15px;
+    top: 0;
+    right: 0;
+}
+.btn-primary {
+	background: #009efb;
+    border: 1px solid #009efb;
+}
+.btn-primary:hover{
+	background: #009efb;
+    opacity: 0.7;
+    border: 1px solid #009efb;
+}
+.btn-success{
+	background: #55ce63;
+    border: 1px solid #55ce63;
+}
+.btn-success:hover{
+	background: #55ce63;
+    opacity: 0.7;
+    border: 1px solid #55ce63;
+}
+.mt-50{
+	margin-top: 50px;
+}
+.caixa li{
+	line-height: 35px;
+}

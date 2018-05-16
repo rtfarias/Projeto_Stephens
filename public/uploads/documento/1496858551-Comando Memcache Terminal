@@ -1,0 +1,1 @@
+memcached -u memcached -d -m 30 -p 11211

