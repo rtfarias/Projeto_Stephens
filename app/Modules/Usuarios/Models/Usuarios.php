@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Modules\Clientes\Models;
+namespace App\Modules\Usuarios\Models;
 
 use DB;
 use App\MyModel;
 
-class Clientes extends MyModel
+class Usuarios extends MyModel
 {
-	protected $table = 'clientes';
+	protected $table = 'usuarios';
 
 	private $rules = array();
 
@@ -28,11 +28,11 @@ class Clientes extends MyModel
 			$insert[$field] = $input[$field];
 		}
 
-		$id_cliente = DB::table($this->table)->insertGetId(
+		$id_usuario = DB::table($this->table)->insertGetId(
 			$insert
 		);
 
-		return $id_cliente;
+		return $id_usuario;
 	}
 
     public function editar($fields, $input, $id){
@@ -59,12 +59,12 @@ class Clientes extends MyModel
 	}
 
 	public function getImagens($id){
-		return DB::table($this->table.'_imagens')->where('id_cliente', $id)->get();
+		return DB::table($this->table.'_imagens')->where('id_usuario', $id)->get();
 	}
 	public function criar_imagem($input){
 		return DB::table($this->table.'_imagens')->insert([
 			[
-				'id_cliente' => $input['id_cliente'],
+				'id_usuario' => $input['id_usuario'],
 				'thumbnail_principal' => $input['thumbnail_principal'],
 			]
 		]);

@@ -5,13 +5,13 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			<?php echo (isset($categoria)) ? 'Editar' : 'Criar'; ?>
-			<small>Informações Categorias</small>
+			<?php echo (isset($usuario)) ? 'Editar' : 'Criar'; ?>
+			<small>Informações Usuários</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="{{ url('/admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-			<li><a href="{{ url('/admin/categorias') }}">Categorias</a></li>
-			<li class="active"><?php echo (isset($categoria)) ? 'Editar' : 'Criar'; ?></li>
+			<li><a href="{{ url('/admin/usuarios') }}">Usuários</a></li>
+			<li class="active"><?php echo (isset($usuario)) ? 'Editar' : 'Criar'; ?></li>
 		</ol>
 	</section>
 	<section class="content">
@@ -32,18 +32,19 @@
 							<?php if($modulo->galeria){ ?>
 								<li><a data-toggle="pill" href="#imagens-tab">Galeria</a></li>
 							<?php } ?>
+							<li><a data-toggle="pill" href="#seo-tab">SEO</a></li>
 						</ul>
 						<div class="spacer"></div>
-						<form id="mainForm" class="form-horizontal" role="form" method="POST" action="{{ url('/admin/categorias/save') }}">
+						<form id="mainForm" class="form-horizontal" role="form" method="POST" action="{{ url('/admin/usuarios/save') }}">
 						<div class="tab-content">
 
 								<div id="info-tab" class="tab-pane fade in active">
 									{{ csrf_field() }}
 									<?php if($modulo->imagem){ ?>
-										<input type="hidden" name="thumbnail_principal" value="<?php echo (isset($categoria)) ? $categoria->thumbnail_principal : ''; ?>">
+										<input type="hidden" name="thumbnail_principal" value="<?php echo (isset($usuario)) ? $usuario->thumbnail_principal : ''; ?>">
 									<?php } ?>
-									<?php if(isset($categoria)){ ?>
-										<input type="hidden" name="id" value="<?php echo $categoria->id; ?>"/>
+									<?php if(isset($usuario)){ ?>
+										<input type="hidden" name="id" value="<?php echo $usuario->id; ?>"/>
 									<?php } ?>
 									<?php foreach($fields as $field){ ?>
 										<?php if(get_class($field) == 'App\CampoModulo'){ ?>
@@ -52,44 +53,44 @@
 												<label for="<?php echo $field->nome; ?>" class="col-md-3 control-label"><?php echo $field->label; ?> <?php echo ($field->required) ? '*' : ''; ?></label>
 												<?php if($field->tipo_campo == 'INT'){ ?>
 													<div class="col-md-7">
-														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="number" step="1" class="form-control" value="<?php echo (isset($categoria)) ? $categoria->$campo : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
+														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="number" step="1" class="form-control" value="<?php echo (isset($usuario)) ? $usuario->$campo : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
 													</div>
 												<?php } ?>
 												<?php if($field->tipo_campo == 'I'){ ?>
 													<div class="col-md-7">
-														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="text" class="form-control" value="<?php echo (isset($categoria)) ? $categoria->$campo : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
+														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="text" class="form-control" value="<?php echo (isset($usuario)) ? $usuario->$campo : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
 													</div>
 												<?php } ?>
 												<?php if($field->tipo_campo == 'N'){ ?>
 													<div class="col-md-7">
-														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="number" class="form-control" value="<?php echo (isset($categoria)) ? $categoria->$campo : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
+														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="number" class="form-control" value="<?php echo (isset($usuario)) ? $usuario->$campo : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
 													</div>
 												<?php } ?>
 												<?php if($field->tipo_campo == 'T'){ ?>
 													<div class="col-md-7">
-														<textarea id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> class="form-control tinymce" name="<?php echo $field->nome; ?>"><?php echo (isset($categoria)) ? $categoria->$campo : $field->valor_padrao; ?></textarea>
+														<textarea id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> class="form-control tinymce" name="<?php echo $field->nome; ?>"><?php echo (isset($usuario)) ? $usuario->$campo : $field->valor_padrao; ?></textarea>
 													</div>
 												<?php } ?>
 												<?php if($field->tipo_campo == 'D'){ ?>
 													<div class="col-md-7">
-														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="date" class="form-control" value="<?php echo (isset($categoria)) ? $categoria->$campo : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
+														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="date" class="form-control" value="<?php echo (isset($usuario)) ? $usuario->$campo : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
 													</div>
 												<?php } ?>
 												<?php if($field->tipo_campo == 'DT'){ ?>
 													<div class="col-md-7">
-														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="datetime-local" class="form-control" value="<?php echo (isset($categoria)) ? date_format(date_create($categoria->$campo), 'd/m/Y H:i') : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
+														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="datetime-local" class="form-control" value="<?php echo (isset($usuario)) ? date_format(date_create($usuario->$campo), 'd/m/Y H:i') : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
 													</div>
 												<?php } ?>
 												<?php if($field->tipo_campo == 'TIME'){ ?>
 													<div class="col-md-7">
-														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="time" class="form-control" value="<?php echo (isset($categoria)) ? $categoria->$campo : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
+														<input id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> type="time" class="form-control" value="<?php echo (isset($usuario)) ? $usuario->$campo : $field->valor_padrao; ?>" name="<?php echo $field->nome; ?>" />
 													</div>
 												<?php } ?>
 												<?php if($field->tipo_campo == 'S'){ ?>
 													<div class="col-md-7">
 														<select id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> class="form-control" name="<?php echo $field->nome; ?>">
-															<option <?php echo (isset($categoria) && $categoria->$campo == 1) ? 'selected' : ''; ?> value="1">Sim</option>
-															<option <?php echo (isset($categoria) && $categoria->$campo == 0) ? 'selected' : ''; ?> value="0">Não</option>
+															<option <?php echo (isset($usuario) && $usuario->$campo == 1) ? 'selected' : ''; ?> value="1">Sim</option>
+															<option <?php echo (isset($usuario) && $usuario->$campo == 0) ? 'selected' : ''; ?> value="0">Não</option>
 														</select>
 													</div>
 												<?php } ?>
@@ -98,7 +99,7 @@
 														<?php $icons = explode(',',file_get_contents('fonts/icons-font-awesome.txt')); ?>
 														<select id="<?php echo $field->nome; ?>" <?php echo ($field->required) ? 'required' : ''; ?> class="form-control select2 select-icone" name="<?php echo $field->nome; ?>">
 															<?php foreach ($icons as $icone): ?>
-																<option <?php echo (isset($categoria) && $icone == $categoria->$campo) ? 'selected' : ''; ?> value="<?php echo $icone; ?>"><?php echo $icone; ?></option>
+																<option <?php echo (isset($usuario) && $icone == $usuario->$campo) ? 'selected' : ''; ?> value="<?php echo $icone; ?>"><?php echo $icone; ?></option>
 															<?php endforeach; ?>
 														</select>
 													</div>
@@ -116,7 +117,7 @@
 														<?php $nomeVariavel = 'array_'.$field->nome; ?>
 														<?php foreach ($$nomeVariavel as $option): ?>
 															<?php $campoNome = $field->campoRelacionado->nome; ?>
-															<option <?php echo (isset($categoria) && $categoria->$campo == $option->id) ? 'selected' : ''; ?> value="<?php echo $option->id; ?>"><?php echo $option->$campoNome; ?></option>
+															<option <?php echo (isset($usuario) && $usuario->$campo == $option->id) ? 'selected' : ''; ?> value="<?php echo $option->id; ?>"><?php echo $option->$campoNome; ?></option>
 														<?php endforeach; ?>
 													</select>
 												</div>
@@ -125,7 +126,48 @@
 									<?php } ?>
 								</div>
 
-								
+								<div id="seo-tab" class="tab-pane fade">
+									<div class="form-group">
+										<label for="meta_keywords" class="col-md-3 control-label">URL Amigável</label>
+
+										<div class="col-md-7">
+											<input type="text" class="form-control" name="slug" value="<?php echo isset($usuario) ? $usuario->slug : ''; ?>">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="meta_keywords" class="col-md-3 control-label">Palavras Chave</label>
+
+										<div class="col-md-7">
+											<div id="meta_keywords"></div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="meta_descricao" class="col-md-3 control-label">Meta Descrição</label>
+
+										<div class="col-md-7">
+											<textarea id="meta_descricao" type="text" class="form-control" name="meta_descricao"><?php echo (isset($usuario)) ? $usuario->meta_descricao : ''; ?></textarea>
+										</div>
+									</div>
+									<script>
+										new Taggle('meta_keywords', {
+											<?php if(isset($usuario) && $usuario->meta_keywords != ''){ ?>
+												tags: [
+													<?php $tags = explode(',',$usuario->meta_keywords); ?>
+
+													<?php foreach($tags as $tag){ ?>
+												    	'<?php echo $tag; ?>',
+												   <?php } ?>
+												],
+											<?php }else{ ?>
+												tags: [
+													'usuario'
+												],
+											<?php } ?>
+										    duplicateTagClass: 'bounce',
+											 hiddenInputName: 'meta_keywords[]'
+										});
+									</script>
+								</div>
 							</form>
 							<?php if($modulo->imagem){ ?>
 								<div id="image-tab" class="tab-pane fade">
@@ -136,15 +178,15 @@
 										<div class="form-group">
 											<label for="image" class="col-md-3 control-label">Imagem</label>
 											<div class="col-md-7">
-												<form action="{{ url('admin/categorias/upload') }}" method="post" class="form single-dropzone" id="my-dropzone" enctype="multipart/form-data">
+												<form action="{{ url('admin/usuarios/upload') }}" method="post" class="form single-dropzone" id="my-dropzone" enctype="multipart/form-data">
 													<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 													<div id="img-thumb-preview">
-														<img id="img-thumb" class="user size-lg img-thumbnail img-responsive" src="<?php echo (isset($categoria) && $categoria->thumbnail_principal != '') ? url('/uploads/categorias/'.$categoria->thumbnail_principal) : 'http://placehold.it/300x100'; ?>">
+														<img id="img-thumb" class="user size-lg img-thumbnail img-responsive" src="<?php echo (isset($usuario) && $usuario->thumbnail_principal != '') ? url('/uploads/usuarios/'.$usuario->thumbnail_principal) : 'http://placehold.it/300x100'; ?>">
 													</div>
 													<button type="button" style="display:none;" id="crop-image" class="btn btn-success">Salvar Corte</button>
 													<button id="upload-submit" class="btn btn-default margin-t-5"><i class="fa fa-upload"></i> Enviar Imagem</button>
 												</form>
-												<form class="hidden" action="{{ url('admin/categorias/crop') }}" id="cropForm" method="POST">
+												<form class="hidden" action="{{ url('admin/usuarios/crop') }}" id="cropForm" method="POST">
 													<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 													<input type="hidden" name="data_crop">
 													<input type="hidden" name="file_name">
@@ -159,17 +201,17 @@
 
 								<div id="imagens-tab" class="tab-pane fade">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lista-galeria">
-										<?php if(isset($categoria) && count($categoria->imagens)){?>
-											<?php foreach ($categoria->imagens as $image){?>
+										<?php if(isset($usuario) && count($usuario->imagens)){?>
+											<?php foreach ($usuario->imagens as $image){?>
 												<div id="item_<?php echo $image->id; ?>" class="item imagem-galeria-<?php echo $image->id; ?>">
-													<div style="background-image: url(<?php echo "/uploads/categorias/$image->thumbnail_principal";?>);" class="thumb"></div>
-													<span data="<?php echo $image->id; ?>" data-modulo="categorias" class="icon delete-image" aria-hidden="true"><i class="fa fa-trash"></i></span>
+													<div style="background-image: url(<?php echo "/uploads/usuarios/$image->thumbnail_principal";?>);" class="thumb"></div>
+													<span data="<?php echo $image->id; ?>" data-modulo="usuarios" class="icon delete-image" aria-hidden="true"><i class="fa fa-trash"></i></span>
 												</div>
 											<?php }?>
 										<?php }?>
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<form class="dropzone" id="galeria-dropzone" method="POST" action="<?php echo (isset($categoria)) ? url('/admin/categorias/upload_galeria/'.$categoria->id) : url('/admin/categorias/upload_galeria/'.$nextId); ?> " enctype="multipart/form-data">
+										<form class="dropzone" id="galeria-dropzone" method="POST" action="<?php echo (isset($usuario)) ? url('/admin/usuarios/upload_galeria/'.$usuario->id) : url('/admin/usuarios/upload_galeria/'.$nextId); ?> " enctype="multipart/form-data">
 											<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 											<div class="fallback">
 												<input name="file" type="file" multiple />
@@ -182,7 +224,7 @@
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">
-						<?php if(isset($categoria) && $current_role->hasAccess($current_module->nome_tabela.'.update') || !isset($categoria) && $current_role->hasAccess($current_module->nome_tabela.'.create')){ ?>
+						<?php if(isset($usuario) && $current_role->hasAccess($current_module->nome_tabela.'.update') || !isset($usuario) && $current_role->hasAccess($current_module->nome_tabela.'.create')){ ?>
 							<div class="text-center">
 								<button type="submit" class="btn btn-primary">
 									<i class="fa fa-btn fa-pencil"></i> Salvar

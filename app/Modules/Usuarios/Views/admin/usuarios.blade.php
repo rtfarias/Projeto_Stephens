@@ -7,12 +7,12 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Clientes
+			Usuários
 			<small>Listagem</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="{{ url('admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-			<li class="active">Clientes</li>
+			<li class="active">Usuários</li>
 		</ol>
 	</section>
 
@@ -24,7 +24,7 @@
 				<div class="box">
 					<div class="box-header">
 						<?php if($current_role->hasAccess($current_module->nome_tabela.'.create')){ ?>
-							<!--a href="{{ url('admin/clientes/add') }}" class="table-add"><i class="fa fa-plus"></i> Adicionar</a-->
+							<a href="{{ url('admin/usuarios/add') }}" class="table-add"><i class="fa fa-plus"></i> Adicionar</a>
 						<?php } ?>
 						<hr>
 					</div>
@@ -43,7 +43,7 @@
 
 							</thead>
 							<tbody>
-								<?php foreach ($clientes as $item): ?>
+								<?php foreach ($usuarios as $item): ?>
 									<tr>
 										<td><?php echo $item->id; ?></td>
 										<?php foreach ($fields_listagem as $field): ?>
@@ -81,10 +81,10 @@
 										<?php endforeach ?>
 										<td>
 											<?php if($current_role->hasAccess($current_module->nome_tabela.'.update')){ ?>
-												<a href="/admin/clientes/edit/<?php echo $item->id; ?>" class="btn btn-primary"><i class="ion-eye"></i></a>
+												<a href="/admin/usuarios/edit/<?php echo $item->id; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
 											<?php } ?>
 											<?php if($current_role->hasAccess($current_module->nome_tabela.'.delete')){ ?>
-												<a href="/admin/clientes/delete/<?php echo $item->id; ?>" class="btn btn-danger deletar"><i class="fa fa-trash"></i></a>
+												<a href="/admin/usuarios/delete/<?php echo $item->id; ?>" class="btn btn-danger deletar"><i class="fa fa-trash"></i></a>
 											<?php } ?>
 										</td>
 									</tr>
@@ -105,7 +105,7 @@
 					<!-- /.box-body -->
 					<div class="box-footer">
 						<?php if($current_role->hasAccess($current_module->nome_tabela.'.create')){ ?>
-							<!--a href="{{ url('admin/clientes/add') }}" class="table-add"><i class="fa fa-plus"></i> Adicionar</a-->
+							<a href="{{ url('admin/usuarios/add') }}" class="table-add"><i class="fa fa-plus"></i> Adicionar</a>
 						<?php } ?>
 					</div>
 				</div>

@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Modules\Clientes\Controllers\Admin;
+namespace App\Modules\Usuarios\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Mail;
 use App\Http\Requests;
 use App\Http\Controllers\BaseController;
-use App\Modules\Clientes\Models\Clientes;
-use DB;
+use App\Modules\Usuarios\Models\Usuarios;
 
-class AdminClientesController extends BaseController
+class AdminUsuariosController extends BaseController
 {
 	private $modulo;
 	private $fields;
@@ -19,17 +18,17 @@ class AdminClientesController extends BaseController
     public function __construct(){
 		parent::__construct();
 		$this->middleware('auth');
-		$this->modulo = \App\Gerador::find(10);
-		$this->fields = \App\CampoModulo::where('id_modulo',10)->orderBy('ordem','ASC')->get();
-		$this->fks = \App\FkModulo::where('id_modulo',10)->orderBy('ordem','ASC')->get();
-		$this->clientes_m = new Clientes();
+		$this->modulo = \App\Gerador::find(21);
+		$this->fields = \App\CampoModulo::where('id_modulo',21)->orderBy('ordem','ASC')->get();
+		$this->fks = \App\FkModulo::where('id_modulo',21)->orderBy('ordem','ASC')->get();
+		$this->usuarios_m = new Usuarios();
 	}
 
 	public function index(){
-		$query = $this->clientes_m->select('clientes.*');
+		$query = $this->usuarios_m->select('usuarios.*');
 
 
-		//$data['clientes'] = $this->clientes_m->get();
+		//$data['usuarios'] = $this->usuarios_m->get();
 		$data['fields_listagem'] = array();
 		foreach ($this->fields as $field) {
 			if($field->listagem){
@@ -37,20 +36,31 @@ class AdminClientesController extends BaseController
 			}
 		}
 		foreach ($this->fks as $fk) {
-			$query->leftJoin($fk->moduloRelacionado->nome_tabela, 'clientes.'.$fk->nome, '=', $fk->moduloRelacionado->nome_tabela.'.id');
+			$query->leftJoin($fk->moduloRelacionado->nome_tabela, 'usuarios.'.$fk->nome, '=', $fk->moduloRelacionado->nome_tabela.'.id');
 			$query->addSelect($fk->moduloRelacionado->nome_tabela.'.'.$fk->campoRelacionado->nome.' as fk'.$fk->id);
 			if($fk->listagem){
 				$data['fields_listagem'] = $fk;
 			}
 		}
 
-		$data['clientes'] = $query->groupBy('clientes.id')->get();
+		$data['usuarios'] = $query->groupBy('usuarios.id')->get();
+
+		/*foreach ($this->fks as $fk) {
+			if($fk->listagem){
+				$nomeVariavel = $fk->nome;
+				$classPath = '\App\Modules\\'.$fk->moduloRelacionado->nome.'\Models\\'.$fk->moduloRelacionado->nome;
+				foreach ($data['usuarios'] as $item) {
+					$data['object_fk'][$item->id][$fk->id] = $classPath::find($item->$nomeVariavel);
+				}
+				$data['fields_listagem'][] = $field;
+			}
+		}*/
 
 		usort($data['fields_listagem'], function($a, $b) {
 		    return $a->ordem - $b->ordem;
 		});
 
-		return view('Clientes::admin/clientes',$data);
+		return view('Usuarios::admin/usuarios',$data);
 	}
 
 	public function add(){
@@ -70,11 +80,8 @@ class AdminClientesController extends BaseController
 			$classPath = '\App\Modules\\'.$fk->moduloRelacionado->nome.'\Models\\'.$fk->moduloRelacionado->nome;
 			$data['array_'.$fk->nome] = $classPath::get();
 		}
-
-		$data['cidades'] = DB::table('cidades')->select('*')->get();
-
-		$data['nextId'] = $this->clientes_m->getNextAutoIncrement();
-		return view('Clientes::admin/form-clientes', $data);
+		$data['nextId'] = $this->usuarios_m->getNextAutoIncrement();
+		return view('Usuarios::admin/form-usuarios', $data);
 	}
 
 	public function edit($id){
@@ -93,19 +100,11 @@ class AdminClientesController extends BaseController
 			$classPath = '\App\Modules\\'.$fk->moduloRelacionado->nome.'\Models\\'.$fk->moduloRelacionado->nome;
 			$data['array_'.$fk->nome] = $classPath::get();
 		}
-		$data['cidades'] = DB::table('cidades')->select('*')->get();
-
-		$data['solicitacoes'] = DB::table('solicitacoes')->select('solicitacoes.*', 'fornecedores.nome AS nome_fornecedor', 'categorias.nome AS nome_categoria')->join('fornecedores', 'solicitacoes.id_fornecedor', '=', 'fornecedores.id')->join('categorias', 'solicitacoes.id_categoria', '=', 'categorias.id')->where('id_cliente', $id)->get();
-
-		$data['avaliacoes'] = DB::table('avaliacoes_clientes')->select('avaliacoes_clientes.*', 'fornecedores.nome AS nome_fornecedor')->join('fornecedores', 'avaliacoes_clientes.id_fornecedor', '=', 'fornecedores.id')->where('id_cliente', $id)->get();
-
-		//echo json_encode($data['solicitacoes']); die();
-
-		$data['cliente'] = $this->clientes_m->find($id);
+		$data['usuario'] = $this->usuarios_m->find($id);
 		if($this->modulo->galeria){
-			$data['cliente']->imagens = $this->clientes_m->getImagens($id);
+			$data['usuario']->imagens = $this->usuarios_m->getImagens($id);
 		}
-		return view('Clientes::admin/form-clientes',$data);
+		return view('Usuarios::admin/form-usuarios',$data);
 	}
 
 
@@ -131,13 +130,13 @@ class AdminClientesController extends BaseController
 			*/
 			//$post['slug'] = $this->slugify($post['titulo']);
 			if($request->input('id')){
-				$this->clientes_m->editar($arrayFields, $post, $request->input('id'));
+				$this->usuarios_m->editar($arrayFields, $post, $request->input('id'));
 			}else{
-				$this->clientes_m->criar($arrayFields, $post);
+				$this->usuarios_m->criar($arrayFields, $post);
 			}
 			\Session::flash('type', 'success');
          \Session::flash('message', "Alteracoes salvas com sucesso!");
-			return redirect('admin/clientes');
+			return redirect('admin/usuarios');
 		}catch(Exception $e){
 			\Session::flash('type', 'error');
          \Session::flash('message', $e->getMessage());
@@ -153,7 +152,7 @@ class AdminClientesController extends BaseController
 		if($request->hasFile('file')) {
 			//upload an image to the /img/tmp directory and return the filepath.
 			$file = $request->file('file');
-			$tmpFilePath = '/uploads/clientes/';
+			$tmpFilePath = '/uploads/usuarios/';
 			$tmpFileName = time() . '-' . $file->getClientOriginalName();
 			$file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
 			$path = $tmpFilePath . $tmpFileName;
@@ -167,12 +166,12 @@ class AdminClientesController extends BaseController
 		if($request->hasFile('file')) {
 			//upload an image to the /img/tmp directory and return the filepath.
 			$file = $request->file('file');
-			$tmpFilePath = '/uploads/clientes/';
+			$tmpFilePath = '/uploads/usuarios/';
 			$tmpFileName = time() . '-' . $file->getClientOriginalName();
 			$file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
 			$path = $tmpFilePath . $tmpFileName;
 
-			$this->clientes_m->criar_imagem(array('id_cliente' => $id, 'thumbnail_principal' => $tmpFileName));
+			$this->usuarios_m->criar_imagem(array('id_usuario' => $id, 'thumbnail_principal' => $tmpFileName));
 
 			return response()->json(array('path'=> $path, 'file_name'=>$tmpFileName), 200);
 		} else {
@@ -181,13 +180,13 @@ class AdminClientesController extends BaseController
 	}
 
 	public function crop_image(Request $request) {
-		$img = \Image::make('uploads/clientes/'.$request->input('file_name'));
+		$img = \Image::make('uploads/usuarios/'.$request->input('file_name'));
 		$dataCrop = json_decode($request->input('data_crop'));
-		if($img->crop(intval($dataCrop->width), intval($dataCrop->height), intval($dataCrop->x), intval($dataCrop->y))->save('uploads/clientes/thumb_'.$request->input('file_name'))){
-			@unlink('uploads/clientes/'.$request->input('file_name'));
+		if($img->crop(intval($dataCrop->width), intval($dataCrop->height), intval($dataCrop->x), intval($dataCrop->y))->save('uploads/usuarios/thumb_'.$request->input('file_name'))){
+			@unlink('uploads/usuarios/'.$request->input('file_name'));
 			echo json_encode(array(
 				'status' => true,
-				'path' => '/uploads/clientes/thumb_'.$request->input('file_name'),
+				'path' => '/uploads/usuarios/thumb_'.$request->input('file_name'),
 				'file_name' => 'thumb_'.$request->input('file_name'),
 			));
 		}else{
@@ -201,11 +200,11 @@ class AdminClientesController extends BaseController
 
 	public function delete($id){
 		try{
-			$this->clientes_m->deletar($id);
+			$this->usuarios_m->deletar($id);
 
 			\Session::flash('type', 'success');
             \Session::flash('message', "Registro removido com sucesso!");
-			return redirect('admin/clientes');
+			return redirect('admin/usuarios');
 		}catch(Exception $e){
 			\Session::flash('type', 'error');
             \Session::flash('message', "Nao foi possivel remover o registro!");
@@ -217,10 +216,10 @@ class AdminClientesController extends BaseController
 
 	public function delete_imagem($id){
 		try{
-			$imagem = $this->clientes_m->getImagem($id);
-			$this->clientes_m->deletar_imagem($id);
+			$imagem = $this->usuarios_m->getImagem($id);
+			$this->usuarios_m->deletar_imagem($id);
 
-			unlink('uploads/clientes/'.$imagem->thumbnail_principal);
+			unlink('uploads/usuarios/'.$imagem->thumbnail_principal);
 
 			return response()->json(array('status' => true, 'message' => 'Registro removido com sucesso!'));
 		}catch(Exception $e){
@@ -228,16 +227,6 @@ class AdminClientesController extends BaseController
 		}
 
 
-	}
-
-	public function verificaEmail(){
-		$email = $_POST['email'];
-		$query = DB::table('clientes')->select('clientes.*')->where('email', $email)->get();
-		//echo json_encode($query);
-		if(count($query) > 0)
-			return json_encode(true);
-		else
-			return json_encode(false);
 	}
 
 	private function slugify($string)
