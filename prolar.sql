@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
--- http://www.phpmyadmin.net
+-- version 4.7.2
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 03, 2017 at 06:13 PM
--- Server version: 5.7.19-0ubuntu0.16.04.1-log
--- PHP Version: 5.6.31
+-- Host: localhost:3306
+-- Generation Time: May 17, 2018 at 01:37 AM
+-- Server version: 5.6.35
+-- PHP Version: 7.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,74 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `avaliacoes_clientes`
---
-
-CREATE TABLE IF NOT EXISTS `avaliacoes_clientes` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `meta_keywords` text,
-  `meta_descricao` text,
-  `slug` varchar(255) NOT NULL,
-  `avaliacao` int(11) DEFAULT NULL,
-  `comentario` text,
-  `criado_em` datetime DEFAULT NULL,
-  `id_fornecedor` int(11) DEFAULT NULL,
-  `id_cliente` int(11) DEFAULT NULL,
-  `id_solicitacao` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `avaliacoes_clientes_imagens`
---
-
-CREATE TABLE IF NOT EXISTS `avaliacoes_clientes_imagens` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `id_avaliacao_cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `avaliacoes_fornecedores`
---
-
-CREATE TABLE IF NOT EXISTS `avaliacoes_fornecedores` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `meta_keywords` text,
-  `meta_descricao` text,
-  `slug` varchar(255) NOT NULL,
-  `avaliacao` int(11) DEFAULT NULL,
-  `comentario` text,
-  `criado_em` datetime DEFAULT NULL,
-  `id_fornecedor` int(11) DEFAULT NULL,
-  `id_cliente` int(11) DEFAULT NULL,
-  `id_solicitacao` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `avaliacoes_fornecedores_imagens`
---
-
-CREATE TABLE IF NOT EXISTS `avaliacoes_fornecedores_imagens` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `id_avaliacao_fornecedor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `categorias`
 --
 
-CREATE TABLE IF NOT EXISTS `categorias` (
+CREATE TABLE `categorias` (
   `id` int(11) NOT NULL,
   `thumbnail_principal` varchar(255) DEFAULT NULL,
   `meta_keywords` text,
@@ -98,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `slug` varchar(255) NOT NULL,
   `codigo` varchar(255) DEFAULT NULL,
   `nome` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=351 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categorias`
@@ -257,8 +193,7 @@ INSERT INTO `categorias` (`id`, `thumbnail_principal`, `meta_keywords`, `meta_de
 (345, '', '', '', '', '050.001.148', 'SEGURANÇA ELETRONICA '),
 (346, '', '', '', '', '050.001.149', 'POS OBRA'),
 (347, '', '', '', '', '050.001.150', 'SERVICOS TEMPORARIOS'),
-(348, '', '', '', '', '050.001.151', 'REGULARIZAÇÃO DE IMÓVEIS'),
-(350, NULL, NULL, NULL, '', '34234', 'teste jones2');
+(348, '', '', '', '', '050.001.151', 'REGULARIZAÇÃO DE IMÓVEIS');
 
 -- --------------------------------------------------------
 
@@ -266,7 +201,7 @@ INSERT INTO `categorias` (`id`, `thumbnail_principal`, `meta_keywords`, `meta_de
 -- Table structure for table `categorias_imagens`
 --
 
-CREATE TABLE IF NOT EXISTS `categorias_imagens` (
+CREATE TABLE `categorias_imagens` (
   `id` int(11) NOT NULL,
   `thumbnail_principal` varchar(255) DEFAULT NULL,
   `id_categoria` int(11) NOT NULL
@@ -278,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `categorias_imagens` (
 -- Table structure for table `cidades`
 --
 
-CREATE TABLE IF NOT EXISTS `cidades` (
+CREATE TABLE `cidades` (
   `id` int(11) NOT NULL,
   `thumbnail_principal` varchar(255) DEFAULT NULL,
   `meta_keywords` text,
@@ -286,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `cidades` (
   `slug` varchar(255) NOT NULL,
   `cidade` varchar(255) DEFAULT NULL,
   `estado` int(11) DEFAULT '23'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cidades`
@@ -302,7 +237,7 @@ INSERT INTO `cidades` (`id`, `thumbnail_principal`, `meta_keywords`, `meta_descr
 -- Table structure for table `cidades_imagens`
 --
 
-CREATE TABLE IF NOT EXISTS `cidades_imagens` (
+CREATE TABLE `cidades_imagens` (
   `id` int(11) NOT NULL,
   `thumbnail_principal` varchar(255) DEFAULT NULL,
   `id_cidade` int(11) NOT NULL
@@ -311,71 +246,15 @@ CREATE TABLE IF NOT EXISTS `cidades_imagens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clientes`
---
-
-CREATE TABLE IF NOT EXISTS `clientes` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `avaliacao` decimal(8,2) NOT NULL DEFAULT '5.00',
-  `meta_keywords` text,
-  `meta_descricao` text,
-  `slug` varchar(255) NOT NULL,
-  `nome` varchar(255) DEFAULT NULL,
-  `udid` varchar(255) DEFAULT NULL,
-  `id_facebook` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `telefone` varchar(255) DEFAULT NULL,
-  `data_nascimento` date DEFAULT NULL,
-  `endereco` varchar(255) DEFAULT NULL,
-  `estado` varchar(255) DEFAULT NULL,
-  `cidade` varchar(255) DEFAULT NULL,
-  `numero` varchar(255) DEFAULT NULL,
-  `complemento` varchar(255) DEFAULT NULL,
-  `latitude` varchar(255) DEFAULT NULL,
-  `longitude` varchar(255) DEFAULT NULL,
-  `cep` varchar(255) DEFAULT NULL,
-  `criado_em` datetime DEFAULT NULL,
-  `editado_em` datetime DEFAULT NULL,
-  `bairro` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `clientes`
---
-
-INSERT INTO `clientes` (`id`, `thumbnail_principal`, `avaliacao`, `meta_keywords`, `meta_descricao`, `slug`, `nome`, `udid`, `id_facebook`, `email`, `telefone`, `data_nascimento`, `endereco`, `estado`, `cidade`, `numero`, `complemento`, `latitude`, `longitude`, `cep`, `criado_em`, `editado_em`, `bairro`) VALUES
-(1, '', '5.00', NULL, NULL, '', 'Cliente Teste', '', '', 'teste2@duostudio.com.br', '(54)2342-3542', '0000-00-00', 'Rua Ernesto Alves', '', '5565', '24', '', '', '', '95020-360', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(2, NULL, '5.00', NULL, NULL, '', 'Ricardo Farias', '', NULL, 'ricardo@duostudio.com.br', '54999999999', NULL, 'Rua tal', NULL, '1', '1234', NULL, '-29.1570871', '-51.1781996', '95020360', NULL, NULL, NULL),
-(3, NULL, '5.00', NULL, NULL, '', 'Ricardo Farias2', '', NULL, NULL, '54999999999', NULL, 'Rua tal', NULL, '1', '1234', NULL, '-29.1570871', '-51.1781996', '95020360', NULL, NULL, NULL),
-(4, NULL, '5.00', NULL, NULL, '', 'wesley', NULL, NULL, 'wesley@duo.com.br', '54992013799', NULL, 'ruateste', NULL, '1', '21312', NULL, NULL, NULL, '1111313122', NULL, NULL, NULL),
-(5, NULL, '5.00', NULL, NULL, '', 'wesley', NULL, NULL, 'wesley@duo.com.br', '54992013799', NULL, 'ruateste', NULL, '1', '21312', NULL, NULL, NULL, '1111313122', NULL, NULL, NULL),
-(6, NULL, '5.00', NULL, NULL, '', 'wesley', NULL, NULL, 'wesley@duo.com.br', '54992013799', NULL, 'ruateste', NULL, '1', '21312', NULL, NULL, NULL, '1111313122', NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `clientes_imagens`
---
-
-CREATE TABLE IF NOT EXISTS `clientes_imagens` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `id_cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `estados`
 --
 
-CREATE TABLE IF NOT EXISTS `estados` (
+CREATE TABLE `estados` (
   `id` int(11) NOT NULL,
   `estado` varchar(75) DEFAULT NULL,
   `sigla` varchar(5) DEFAULT NULL,
   `pais` int(7) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `estados`
@@ -413,219 +292,16 @@ INSERT INTO `estados` (`id`, `estado`, `sigla`, `pais`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fornecedores`
---
-
-CREATE TABLE IF NOT EXISTS `fornecedores` (
-  `id` int(11) NOT NULL,
-  `ativo` int(1) NOT NULL DEFAULT '1',
-  `avaliacao` decimal(8,2) NOT NULL DEFAULT '5.00',
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `meta_keywords` text,
-  `meta_descricao` text,
-  `slug` varchar(255) NOT NULL,
-  `nome` varchar(255) DEFAULT NULL,
-  `nome_fantasia` varchar(255) DEFAULT NULL,
-  `senha` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `telefone` varchar(255) DEFAULT NULL,
-  `cnpj` varchar(255) DEFAULT NULL,
-  `udid` varchar(255) DEFAULT NULL,
-  `segunda` int(1) NOT NULL DEFAULT '0',
-  `terca` int(1) NOT NULL DEFAULT '0',
-  `quarta` int(1) NOT NULL DEFAULT '0',
-  `quinta` int(1) NOT NULL DEFAULT '0',
-  `sexta` int(1) NOT NULL DEFAULT '0',
-  `sabado` int(1) NOT NULL DEFAULT '0',
-  `domingo` int(1) NOT NULL DEFAULT '0',
-  `dia_todo` int(1) NOT NULL DEFAULT '0',
-  `hora_inicio_manha` time NOT NULL,
-  `hora_final_manha` time NOT NULL,
-  `hora_inicio_tarde` time NOT NULL,
-  `hora_final_tarde` time NOT NULL,
-  `hora_inicio_noite` time NOT NULL,
-  `hora_final_noite` time NOT NULL,
-  `horario_comercial` int(1) NOT NULL DEFAULT '0',
-  `endereco` varchar(255) DEFAULT NULL,
-  `numero` varchar(255) DEFAULT NULL,
-  `complemento` varchar(255) DEFAULT NULL,
-  `cidade` int(11) DEFAULT NULL,
-  `estado` varchar(255) DEFAULT NULL,
-  `cep` varchar(255) DEFAULT NULL,
-  `latitude` varchar(255) DEFAULT NULL,
-  `longitude` varchar(255) DEFAULT NULL,
-  `criado_em` varchar(255) DEFAULT NULL,
-  `editado_em` varchar(255) DEFAULT NULL,
-  `descricao` text,
-  `bairro` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `fornecedores`
---
-
-INSERT INTO `fornecedores` (`id`, `ativo`, `avaliacao`, `thumbnail_principal`, `meta_keywords`, `meta_descricao`, `slug`, `nome`, `nome_fantasia`, `senha`, `email`, `telefone`, `cnpj`, `udid`, `segunda`, `terca`, `quarta`, `quinta`, `sexta`, `sabado`, `domingo`, `dia_todo`, `hora_inicio_manha`, `hora_final_manha`, `hora_inicio_tarde`, `hora_final_tarde`, `hora_inicio_noite`, `hora_final_noite`, `horario_comercial`, `endereco`, `numero`, `complemento`, `cidade`, `estado`, `cep`, `latitude`, `longitude`, `criado_em`, `editado_em`, `descricao`, `bairro`) VALUES
-(6, 1, '5.00', '', '', '', '', 'ELETRICA ANDREAZZA LTDA', 'ANGELO ANDREAZZA', '', 'angeloandreazza@gmail.com', '(54)3283-1104', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(7, 1, '5.00', '', '', '', '', 'JUAREZ ANTONIO DALL AGNOL', 'PINTURAS DALLAS', '', 'dallas@dallasdecoracoes.com.br', '(54)99973-2522', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(8, 1, '5.00', '', '', '', '', 'POLITO COM TINTAS PINT E REPRES LTDA', 'POLITO PINTURAS', '', 'politopinturas@gmail.com', '(54)99971-2298', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(9, 1, '5.00', '', '', '', '', 'DESENTUPIDORA LIDER LTDA', 'DESENTUPIDORA LIDER ', '', 'raquelb@desentupidoralider-rs.com.br', '(54)3028-2919', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(10, 1, '5.00', '', '', '', '', 'ADRIANO DOMINGOS ZAMPIERI', 'ADZ', '', 'adz.instalacoes@gmail.com', '(54)99971-2452', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(11, 1, '5.00', '', '', '', '', 'FORMOLO MAT P/CONSTR LTDA-CIMENTO ', 'FORMOLO', '', 'financeiro@formolomateriais.com.br', '(54)3212-2222', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(12, 1, '5.00', '', '', '', '', 'SIMOQUIMICA PROD QUIMICOS LTDA', 'SIMOQUIMICA', '', 'vendas2@simoquimica.com.br', '(54)3733-9000', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(13, 1, '5.00', '', '', '', '', 'MAGNANI E CIA LTDA.', 'MAGNANI MAT. ELETRICOS', '', 'financeiro@magnani.com.br', '(54)4009-5255', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(14, 1, '5.00', '', '', '', '', 'METADADOS ASSESSORIA E SISTEMAS LTDA. ', 'METADADOS', '', 'metadados@metadados.com.br', '(54)3026-9900', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(15, 1, '5.00', '', '', '', '', 'VENETO TELEALARME LTDA.', 'VENETO', '', 'fernando@sveneto.com.br', '(54)3223-2559', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(16, 1, '5.00', '', '', '', '', 'CIPNET SERV DE INTERNET LTDA', 'CIPNET', '', 'sac@cipnet.com.br', '(54)3028-2025', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(17, 1, '5.00', '', '', '', '', 'PROTESUL VIGILANCIA CAXIENSE LTDA.', 'PROTESUL', '', ' everton@protesul.com.br;protesul@protesul.com.br', '(54)3228-3133', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(18, 1, '5.00', '', '', '', '', 'COM TATO COM DE PROD DE LIMP LTDA - PROD QUIM. E EQUIP.', 'COM TATO LTDA', '', 'financeiro2@comtato.etc.br', '(54)3224-1151', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(19, 1, '5.00', '', '', '', '', 'ROCK COMERCIO DE TINTAS LTDA. ', 'ROCK COMERCIO DE TINTAS LTDA. ', '', 'rocktintas@rocktintas.com.br', '(54)3222-6766', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(20, 1, '5.00', '', '', '', '', 'SOLUTION PROVIDER LTDA.', 'INTELTEC', '', 'producao@inteltec.com.br', '(54)3028-2175', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(21, 1, '5.00', '', '', '', '', 'HOFFMANN MAT DE CONSTR LTDA. ', 'HOFFMANN MAT DE CONSTR', '', 'beto@hoffmannrs.com.br ', '(54)3535-3535', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(22, 1, '5.00', '', '', '', '', 'BETTONI COMERCIO DE TINTAS LTDA. ', 'BETTONI', '', 'bettonitintas@terra.com.br', '(54)3221-5327', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(23, 1, '5.00', '', '', '', '', 'SERRANA COMERCIO DE TINTAS LTDA. ', 'SERRANA', '', 'leandro@serranatintas.com.br', '(54)3223-7322', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(24, 1, '5.00', '', '', '', '', 'CELETRO CAXIAS MAT ELETRICOS LTDA. ', 'CELETRO', '', 'celetro@celetrocaxias.com.br', '(54)3228-3004', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(25, 1, '5.00', '', '', '', '', 'EMERSON REIS FREDO', 'CHAVES CENTENARIO 99382032053', '', 'centenario@terra.com.br', '(54)3223-2992', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(26, 1, '5.00', '', '', '', '', 'J M MARCON E CIA LTDA.', 'ELETRO MARCON', '', 'jmmarcon@terra.com.br', '(54)3222-3966', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(27, 1, '5.00', '', '', '', '', 'MENTES ENG E CONSTR LTDA.', '', '', 'mentes.eng@uol.com.br', '(54)3224-1597', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(28, 1, '5.00', '', '', '', '', 'COMERCIAL DE TINTAS NORDESTE LTDA.', 'TINTAS NORDESTE LTDA', '', 'deise@nordestetintas.com.br', '(54)4009-2955', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(29, 1, '5.00', '', '', '', '', 'FERRAGENS BIONDO LTDA.', 'FERRAGENS BIONDO ', '', 'ferragensbiondo@terra.com.br', '(54)3221-5118', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(30, 1, '5.00', '', '', '', '', 'VANDERLEIA RIGOTTO ALVES', 'VANDEL ', '', 'vandialvez@hotmail.com', '(54)3224-1744', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(31, 1, '5.00', '', '', '', '', 'COLLEONY PROD SIST HIGIENIZ LTDA.', '', '', 'dayane@colleony.com.br', '(54)3225-7007', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(32, 1, '5.00', '', '', '', '', 'COMABE LTDA', '', '', 'comabe@comabe.com.br', '(54)2108-2300', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(33, 1, '5.00', '', '', '', '', 'CEMIN MATERIAIS ELETRICOS LTDA.', 'CEMIN', '', 'doctorpower.mat.eletrico@hotmail.com', '(54)3228-3455', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(34, 1, '5.00', '', '', '', '', 'VANDEL LIMPEZA CAIXAS D''AGUA LTDA.', '', '', 'vandialvez@hotmail.com', '(54)3224-1744', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(35, 1, '5.00', '', '', '', '', 'QUATTRUM CORRET SEG LTDA', '', '', 'quattrum@pro.via-rs.com.br', '(54)3222-1925', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(36, 1, '5.00', '', '', '', '', 'TELECALCAGNOTTO EQUIP TELEF LTDA-MATERIAIS', 'TELECALCAGNOTTO', '', 'telecal@telecalcagnotto.com.br', '(54)3228-1900', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(37, 1, '5.00', '', '', '', '', 'DALSAT TELECOMUNICAÇÕES LTDA.', 'DALSAT TELECOMUNICAÇÕES LTDA.', '', 'carlos@dalsat.com.br', '(54)3227-4300', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(38, 1, '5.00', '', '', '', '', 'VIACONNECT SOLUÇÕES  INFORMAT LTDA', 'CDSA ', '', 'diretoria@viaconnect.com.br', '(54)3212-6074', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(39, 1, '5.00', '', '', '', '', 'ANDREIA CANTON DE FREITAS  ', 'SUPRITEC', '', 'supritech@supritech.inf.br', '(54)3028-3036', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(40, 1, '5.00', '', '', '', '', 'CONTEL CONTROLE ELETRONICO LTDA.', 'CONTEL', '', 'douglas.silva@contel.ind.br', '(54)3224-2433', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(41, 1, '5.00', '', '', '', '', 'JANAIR DELIR KATZ', 'CAIO CHAVES', '', 'janairgremista@hotmail.com', '(54)3027-2039', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(42, 1, '5.00', '', '', '', '', 'SUSTENTARE CORRETORA DE SEGUROS LTDA', 'SUSTENTARE SEGUROS', '', 'caxias4@sustentareseguros.com.br', '(54)3025-4567', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(43, 1, '5.00', '', '', '', '', 'SERRAQUIMICA PROD QUIMICOS LTDA.', '', '', 'serraquimicavendas@serraquimica.com.br', '(54)3213-5988', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(44, 1, '5.00', '', '', '', '', 'VENETO TRANSPORTES LTDA.', '', '', '', '(54)3224-2977', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(45, 1, '5.00', '', '', '', '', 'STV SEGUR E TRANSP VALORES LTDA.', 'STV SEGUR E TRANSP VALORES', '', 'lissandra.mota@stv.com.br', '(51)3358-1400', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(46, 1, '5.00', '', '', '', '', 'SAMUEL COMERCIO DE TINTAS LTDA. ', 'NORDESTE TINTAS', '', 'samuel@nordestetintas.com.br', '(54)4009-2955', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(47, 1, '5.00', '', '', '', '', 'MAXICRON MAQU ELETRONICAS LTDA. ', 'MAXICRON ', '', 'maxicron.instal@gmail.com', '(54)99979-5662', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(48, 1, '5.00', '', '', '', '', 'XAVIER COM EQUIP P/ALIMENTAÇÃO LTDA. ', 'XAVIER EQUIP. P/ ALIMENTAÇÃO', '', 'xavier@xavierequipamentos.com.br', '(54)3228-1200', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(49, 1, '5.00', '', '', '', '', 'BIPI EXTINTORES LTDA', '', '', 'comercial.bipi@hotmail.com', '(54)3212-2343', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(50, 1, '5.00', '', '', '', '', 'MAELI IND E COM DE SISTEMAS DE AR LTDA. ', '', '', 'maeli@maeliar.com.br', '(54)3228-4481', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(51, 1, '5.00', '', '', '', '', 'PRESSIER RS INFORMATICA LTDA.', 'PRESSIER', '', 'pressier@pressier.com.br', '(54)3028-4775', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(52, 1, '5.00', '', '', '', '', 'SOLUCIONE SERV PREDIAIS LTDA.', 'SOLUCIONE', '', 'comercial@solucione.com.br', '(54)3028-4060', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(53, 1, '5.00', '', '', '', '', 'RECOLHERE TRANSPORTES LTDA ', '', '', 'recolhere@gmaill.com', '(54)3219-3430', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(54, 1, '5.00', '', '', '', '', 'BUFFON MOVEIS E DECORAÇÕES LTDA', 'BUFFON MOVEIS E DECORAÇÕES LTDA', '', 'buffonmoveis@hotmail.com', '(54)3211-1077', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(55, 1, '5.00', '', '', '', '', 'ED COMERCIO DE PRODUTOS DE LIMPEZA LTDA', 'E D COM PROD LIMPEZA LTDA', '', 'vendas@toplimprs.com.br', '(54)3028-5223', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(56, 1, '5.00', '', '', '', '', 'CAXIAS MOTORES ELETR LTDA', 'CAXIAS MOTORES ELETR LTDA', '', 'caxiasmotores@yahoo.com.br', '(54)3223-5025', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(57, 1, '5.00', '', '', '', '', 'PC CARGAS E TRANSPORTES LTDA', 'TRANSPAPÃO', '', 'papaoentulhos@gmail.com', '(54)3222-2221', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(58, 1, '5.00', '', '', '', '', 'SPV DESENTUPIDORA LTDA', 'RODOSUL DESENTUPIDORA', '', 'julian.vendas@outloock.com', '(54)3025-4217', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(59, 1, '5.00', '', '', '', '', 'CALAN COM DE MÁQUINAS', 'CALAN COM DE MÁQUINAS', '', 'calanmaquinas@terra.com.br', '(54)3212-2356', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(60, 1, '5.00', '', '', '', '', 'DALLAS  DECORAÇÕES PREDIAIS LTDA', 'PINTURAS DALLAS', '', 'dallas@dallasdecoracoes.com.br', '(54)3222-5097', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(61, 1, '5.00', '', '', '', '', 'DOMINIO SISTEMAS LTDA', 'DOMINIO SISTEMAS LTDA', '', '', '(48)3461-1000', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(62, 1, '5.00', '', '', '', '', 'JCC ANTENAS LTDA', 'JCC ANTENAS LTDA', '', 'jcantenas2009@hotmail.com', '(54)3224-4587', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(63, 1, '5.00', '', '', '', '', 'MARCXAND CORRETORA DE SEGUROS LTDA', 'MARCXAND ', '', 'alexandre@marcxand.com.br', '(51)3028-8224', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(64, 1, '5.00', '', '', '', '', 'DOMINGOS ZAMPIERI', 'DOMINGOS ZAMPIERI', '', '', '(54)99979-5177', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(65, 1, '5.00', '', '', '', '', 'FERRAGENS BIONDO LTDA - CHAVES', 'FERRAGENS BIONDO LTDA - CHAVES', '', 'ferragensbiondo@terra.com.br', '(54)3221-5118', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(66, 1, '5.00', '', '', '', '', 'COM TATO COM DE PROD LIMP LTDA - DESCART', 'COM TATO LTDA', '', 'financeiro2@comtato.etc.br', '(54)3290-2000', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(67, 1, '5.00', '', '', '', '', 'INETSOFT INFORMATICA LTDA', 'INETSOFT INFORMATICA LTDA', '', '', '(51)3338-7316', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(68, 1, '5.00', '', '', '', '', 'TELECALCAGNOTTO EQUIP TELEF LTDA - SERVIÇOS', 'TELECALCAGNOTTO', '', 'telecal@telecalcagnotto.com.br', '(54)3228-1900', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(69, 1, '5.00', '', '', '', '', 'FORMOLO MAT CONSTR LTDA -DIVERSOS', 'FORMOLO', '', 'vendas@formolomateriais.com.br', '(54)3212-2222', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(70, 1, '5.00', '', '', '', '', 'AMEC EMPREITEIRA DE SERVIÇOS LTDA - MARCOS', 'AMEC SERVIÇOS', '', 'amec.empreiteira@hotmail.com', '(54)3222-7840', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(71, 1, '5.00', '', '', '', '', 'TRANSRESIND TRANSP RES IND LTDA', 'TRANSRESIND TRANSP RES IND LTDA', '', 'marcio@transresind.com.br', '(54)3025-2888', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(72, 1, '5.00', '', '', '', '', 'MARCOS J H GUEBERTO', 'AMEC', '', 'amec.empreiteira@hotmail.com', '(54)99977-7833', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(73, 1, '5.00', '', '', '', '', 'MIGRA SERVICE SOL LIMP LTDA', 'MIGRA SERVICE SOL LIMP LTDA', '', 'comercial02@migraservice.com.br', '(54)3029-2024', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(74, 1, '5.00', '', '', '', '', 'EDUARDO CRUZ', 'CHAVES CAXIAS', '', 'chaves.caxias@hotmail.com', '(54)99979-1491', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(75, 1, '5.00', '', '', '', '', 'PREVENFIRE SIST COMB INC LTDA', 'PREVENFIRE SIST COMB INC LTDA', '', 'prevenfire@prevenfireextintores.com', '(54)3212-2860', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(76, 1, '5.00', '', '', '', '', 'PREVENFIRE SIST COMBATE INC LTDA', 'PREVENFIRE SIST COMBATE INC LTDA', '', '', '(54)3212-2860', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(77, 1, '5.00', '', '', '', '', 'EXTRATO ORG CONTAB LTDA', 'EXTRATO ORG CONTAB LTDA', '', 'ilton@extrato.srv.br', '(54)3222-2566', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(78, 1, '5.00', '', '', '', '', 'MATTER HIGIENIZAÇÃO LTDA-ME', 'MATTER HIGIENIZAÇÃO LTDA', '', 'matter_@hotmail.com', '(54)3028-8647', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(79, 1, '5.00', '', '', '', '', 'CASSOL MONIT ALARMES LTDA', 'TOP SEGUR', '', 'comercial@topsegur.net, kelen@topsegur.net', '(54)99155-6517', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(80, 1, '5.00', '', '', '', '', '4FIX INSIDE EXPERIENCE LTDA', '4 FIX', '', '', '(54)3021-6114', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(81, 1, '5.00', '', '', '', '', 'GALIOTO MÍDIA  DIGITAL LTDA', 'GALIOTO MÍDIA  DIGITAL LTDA', '', '', '(54)3225-1109', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(82, 1, '5.00', '', '', '', '', 'NORDESTE TINTAS LTDA', 'NORDESTE TINTAS LTDA', '', 'fabiana@nordestetintas.com.br', '(54)4009-2955', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(83, 1, '5.00', '', '', '', '', 'TEL BUSINESS SERV TELEF LTDA', 'GRAHAM BELL', '', 'miguel@grambell.net', '(54)3224-6000', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(84, 1, '5.00', '', '', '', '', 'VOLNEI MASOTTI ME', 'VOLNEI MASOTTI', '', 'volneimasotti@yahoo.com.br', '(54)98111-8164', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(85, 1, '5.00', '', '', '', '', 'IPLAN -  ASSESSORIA E CONSULTORIA LTDA', 'IPLAN - INSTITUTO DE PLANEJAMENTO E ASSESSORIA DE ORGANIZAÇÕES LTDA', '', 'candidoluis@iplancaxias.com.br', '(54)3027-4260', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(86, 1, '5.00', '', '', '', '', 'DARVAN DESIGN', 'DARVAN DESIGN', '', 'darvan@terra.com.br', '(54)99979-5765', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(87, 1, '5.00', '', '', '', '', 'LUCIANO AGUSTINI 812034540-15', 'JARDINS 4 ESTAÇÕES', '', 'jardins4estacoes@gmail.com', '(54)3229-5804', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(88, 1, '5.00', '', '', '', '', 'COLLEONY PRODUTOS E SISTEMAS PARA HIGIENIZAÇÃO LTDA', 'COLLEONY', '', 'vendas5@colleony.com.br', '(54)3225-7007', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(89, 1, '5.00', '', '', '', '', 'ED COMERCIO DE PRODUTOS DE LIMPEZA LTDA', 'TOP LIMP', '', 'atendimento@toplimprs.com.br', '(54)3028-5223', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(90, 1, '5.00', '', '', '', '', 'ECOLIDER SISTEMA AMBIENTAL LTDA', 'ECOLIDER SISTEMA AMBIENTAL LTDA', '', 'raquelb@desentupidoralider-rs.com.br', '(54)3028-7161', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(91, 1, '5.00', '', '', '', '', 'J PAESE LIMP CONSERV LTDA', 'J PAESE LIMP CONSERV LTDA', '', '', '(54)3027-5702', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(92, 1, '5.00', '', '', '', '', 'JUCIMAR CEZÁRIO DIAS', 'JC INSTALAÇÕES ', '', 'jucimardias@outlook.com', '(54)99680-2913', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(93, 1, '5.00', '', '', '', '', 'GPS MANUTENÇÃO DE MAQUINAS INDUSTRIAIS LTDA', 'GPS MAQUINAS', '', 'gps@gpsmaquinas.ind.br', '(54)3229-5794', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(94, 1, '5.00', '', '', '', '', 'CAP. JULIANO AMARAL', 'CONSULTORIA EM SEGURANÇA', '', 'julianoandre@brigadamilitar.rs.gov.br', '(54)99183-9198', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(95, 1, '5.00', '', '', '', '', 'ANDRESA SOMENSI', 'ASB TREINAMENTOS', '', 'comercial.bipi@hotmail.com', '(54)99162-2687', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(96, 1, '5.00', '', '', '', '', 'LHC INFORMAT LTDA', 'SANDRO HUNTER', '', 'huntercx@gmail.com', '(54)99923-6511', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(97, 1, '5.00', '', '', '', '', 'JOÃO ALBERTO COSTA', 'JOÃO ALBERTO COSTA', '', '', '(54)99973-7075', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(98, 1, '5.00', '', '', '', '', 'MAURICIO ANDRÉ ROSA ROXO', 'TOP LINE', '', 'pacoroxo@terra.com.br', '(54)99908-2569', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(99, 1, '5.00', '', '', '', '', 'EZEQUIEL O TAVARES - PRESTO', 'PRESTO', '', '', '(54)3041-1433', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(100, 1, '5.00', '', '', '', '', 'ALDECIR MENDES ORLANDO', 'WIBRATTO EQUIPAMENTOS SEGURANÇA LTDA', '', 'wibratto@yahoo.com.br', '(54)99971-3681', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(101, 1, '5.00', '', '', '', '', 'R A COM SIST ELETRÔNICOS LTDA', 'TOP SEGUR', '', 'comercial@topsegur.net', '(54)3025-1747', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(102, 1, '5.00', '', '', '', '', 'JOÃO RICARDO DA SILVA MELO', 'JOÃO RICARDO DA SILVA MELO', '', 'melojrs@terra.com.br', '(54)99976-4527', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(103, 1, '5.00', '', '', '', '', 'CHAVES CAXIAS', 'EDUARDO CRUZ', '', '', '(54)3225-3663', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(104, 1, '5.00', '', '', '', '', 'CTTE SEGURANÇA PRIVADA LTDA', 'CTTE SEGURANÇA  PRIVADA LTDA', '', 'volpatto@ctteseg.com.br', '(51)3073-5900', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(105, 1, '5.00', '', '', '', '', 'LISANDRO  FELIX GAZZOLLA', 'LISANDRO  FELIX GAZZOLLA', '', '', '(54)99163-4857', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(106, 1, '5.00', '', '', '', '', 'PAULO HENRIQUE DOS SANTOS', 'PAULO HENRIQUE DOS SANTOS', '', 'morsegoconstrusoes@gmail.com', '(54)99969-3257', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(107, 1, '5.00', '', '', '', '', 'CILON MOTTA SILVA', 'SECURITY PRIME SEG PATRIM', '', 'cilon.prime@hotmail.com', '(54)99913-8604', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(108, 1, '5.00', '', '', '', '', 'LIDERGLASS IND COM VIDROS EIRELI ME', 'VIDRO LÍDER', '', 'vidrolider@vidrolider.com.br', '(54)3223-7600', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(109, 1, '5.00', '', '', '', '', 'M1 ENGENHARIA LTDA - EPP', 'M1 ENGENHARIA ', '', 'm1@m1engenharia.com.br', '(54)3536-3086', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(110, 1, '5.00', '', '', '', '', 'RODRIGO GADINI ', 'GADINI INSTALAÇÕES ELÉTRICAS', '', 'rodrigo.gadini@hotmail.com', '(54)99197-6767', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(111, 1, '5.00', '', '', '', '', 'ENERGIE-SERV E EFICIENCIA ENERGETICA LTDA - EPP', 'ENERGIE', '', 'energiesrv@gmail.com', '(54)99124-3664', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(112, 1, '5.00', '', '', '', '', 'VALDEREZ ANTÔNIO TRUBIAN PINTO', 'DECOR', '', '', '(54)99191-0033', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(113, 1, '5.00', '', '', '', '', 'J. PAESE LIMPEZA E CONSERVAÇÃO LTDA ME', 'SERVICE SERVIÇOS ESPECIAIS', '', 'contato@limpezaeconservacaocaxias.com.br', '(54)98403-6341', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(114, 1, '5.00', '', '', '', '', 'PAULO EDUARDO SIGNORE SALVADOR', 'CHAVES CRUZEIRO', '', 'chavescruzeiro@gmail.com', '(54)3212-9562', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(115, 1, '5.00', '', '', '', '', 'PROTEFORT EMPRESA DE VIGILANCIA E SEGURANÇA LTDA', 'PROTEFORT VIGILANCIA', '', 'jorge_lunkes@protefort.com.br', '(54)3215-4261', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(116, 1, '5.00', '', '', '', '', 'LFG INSTALAÇÕES HIDRAUL LTDA-ME', 'LFG INSTALAÇÕES HIDRAULICAS LTDA-ME', '', 'lfg@lfghidraulica.com.br', '(54)3214-3015', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(117, 1, '5.00', '', '', '', '', 'PAULO R B ROXO', 'TOP LINE', '', 'pacoroxo@terra.com.br', '(54)3419-4028', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(118, 1, '5.00', '', '', '', '', 'MS CAVALHEIRO PINTURAS LTDA', 'MS CAVALHEIRO PINTURAS LTDA', '', 'pinturascavalheiro@yahoo.com.br', '(54)99123-1627', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(119, 1, '5.00', '', '', '', '', 'JOVENSIL DALPOZZO', 'BARUK AUTOMATIZAÇÃO DE PORTAS E PORTÕES', '', 'baruk.portoes@bol.com.br', '(54)98423-1281', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(120, 1, '5.00', '', '', '', '', 'DLHT SERV E MANUT PRED LTDA', 'PRA QUE MARIDO', '', 'artcaxias.com@gmail.com', '(54)3534-7539', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(121, 1, '5.00', '', '', '', '', 'CRISTALL GESTÃO DE SERVIÇOS LTDA - EPP', 'CRISTALL GESTÃO DE SERVIÇOS LTDA - EPP', '', 'comercial@cristall.com.br', '(54)3014-0949', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(122, 1, '5.00', '', '', '', '', 'CHEF LIMP S. M. DE LIMPAR LTDA', 'CHEF LIMP S.M. DE LIMPAR', '', 'cheflimp@gmail.com', '(54)99140-5534', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(123, 1, '5.00', '', '', '', '', 'AJ IMPERMEABILIZAÇÃO LTDA', 'AJ IMPERMEABILIZAÇÃO LTDA', '', 'ajimpermeabilizacoes@gmail.com', '(54)3238-1009', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(124, 1, '5.00', '', '', '', '', 'MARTA ADRIANA PAESE - ME', 'MASTER - CLEAN LIMP E CONSERVAÇÃO', '', 'contato@masterclean.net.br', '(54)3021-5007', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(125, 1, '5.00', '', '', '', '', 'MAXICRON MÁQUINAS ELETRÔNICAS LTDA', 'MAXICRON ', '', 'maxicron.instal@gmail.com', '(54)99979-5662', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(126, 1, '5.00', '', '', '', '', 'VALMOR JAIR GIGOWSKI', 'CAMINHO DAS PEDRAS', '', 'jardinagemcaminhodaspedras@hotmail.com', '(54)3227-6893', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(127, 1, '5.00', '', '', '', '', 'NOVO CONCEITO SERV DE LIMP LTDA ME', 'NOVO CONCEITO SERV DE LIMP LTDA ME', '', 'novoconceitosrv@bol.com.br', '(54)99177-0971', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(128, 1, '5.00', '', '', '', '', 'C3 EQUIPAMENTOS PARA CONSTRUÇÃO CIVIL LTDA', 'C3 EQUIPAMENTOS / MAIS GARAGEM ', '', 'gerenciacomercial@c3equipamentos.com.br', '(54)3211-8715', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(129, 1, '5.00', '', '', '', '', 'VIRCEU GONÇALVES DA ROSA', 'MASTER CLEAN', '', 'masterclean20@gmail.com', '(54)98414-4589', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(130, 1, '5.00', '', '', '', '', 'MM PINTURAS LDTA - ME', 'M & M PINTURAS ', '', 'claudemirmempinturas@yahoo.com.br', '(54)98442-0135', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(131, 1, '5.00', '', '', '', '', 'RODRIGO L CALCAGNOTTO', 'RODRIGO LUIZ CALCAGNOTTO', '', 'rodrigocalcagnotto@gmail.com', '(54)99117-3130', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(132, 1, '5.00', '', '', '', '', 'JGV SERVIÇOS DE LIMPEZA E CUIDADOS', 'MARIA BRASILEIRA - UNIDADE CAXIAS DO SUL ', '', 'caxias.jardimamerica@mariabrasileira.com.br', '(54)3533-5102', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(133, 1, '5.00', '', '', '', '', 'BELLUNO ASSESSORIA LTDA - ME', 'BELLUNO ENGENHARIA E ASSESSORIA LTDA - ME', '', 'marcelo@belluno.eng.br', '(54)3538-0806', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(134, 1, '5.00', '', '', '', '', 'STV SEGURANÇA E TRANSPORTE DE VALORES LTDA', 'STV SEGURANÇA', '', 'rossano.marchiori@stv.com.br', '(54)3022-2802', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(135, 1, '5.00', '', '', '', '', 'HIGH INDUSTRIAL LTDA', 'HIGH INDUSTRIAL LTDA', '', 'juliano@highindustrial.com.br', '(54)3028-5636', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(136, 1, '5.00', '', '', '', '', 'LUCAS C RODRIGUES', 'BELAR SERVIÇOS', '', 'belarservicos@gmail.com', '(54)99126-3638', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(137, 1, '5.00', '', '', '', '', 'FRANCISNEI REDEL DA MOTTA', 'IMPLEVIDROS', '', 'vendas@implevidros.com.br', '(54)99670-1515', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(138, 1, '5.00', '', '', '', '', 'AZURRA METALURGICA LTDA', 'AZURRA METALURGICA LTDA', '', 'elmo@malbanet.com.br', '(54)3067-3658', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(139, 1, '5.00', '', '', '', '', 'MDS SERVIÇOS', 'MAURO M SOUZA', '', 'mdsservicos1@gmail.com', '(54)99979-8959', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(140, 1, '5.00', '', '', '', '', 'S. SCHEIN E CIA LDTA', 'LAVANDERIA LAV E LEV', '', 'messaschein@lavlev.com.br', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(141, 1, '5.00', '', '', '', '', 'BRIDI MANUTENÇÃO PLANEJADA LTDA', 'BRIDI MANUTENÇÃO PLANEJADA LTDA', '', 'rodrigo@bridiconstrucoes.com.br,  diego@bridiconstrucoes.com.br', '(54)99196-0409', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(142, 1, '5.00', '', '', '', '', 'ROBERTA FANTON', 'ROBERTA FANTON', '', 'roberta@robertafanton.com.br', '(54)3538-1231', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(143, 1, '5.00', '', '', '', '', 'GBTEK TECNOLOGIA LTDA', 'GBTEK ', '', 'comercial@gbtek.com.br', '(54)99987-5621', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(144, 1, '5.00', '', '', '', '', 'JORGE HENRIQUE DE SOUZA', 'JORGE HENRIQUE DE SOUZA', '', 'jorgesouza345@yhahoo.com', '(54)99117-2090', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(145, 1, '5.00', '', '', '', '', 'GABRIELA GOMES DE QUADRO ME', 'SOARES MONTAGENS E MANUTENÇÕES INDUSTRIAL', '', 'soaresmetalica@gmail.com', '(54)98445-7961', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(146, 1, '5.00', '', '', '', '', 'DASUL VIDROS LTDA', 'DASUL VIDROS ', '', 'dasulvidros@gmail.com', '(54)3221-0343', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(147, 1, '5.00', '', '', '', '', 'UMANA BRASIL ASS. E  CONSULTORIA DE RH LTDA', 'UMANA BRASIL ', '', 'jocelito.silva@umanabrasil.com', '(54)98109-0005', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(148, 1, '5.00', '', '', '', '', 'LGA SOL EM REGULAR DE EDIFICAÇÕES LTDA', 'LGA SOLUÇÕES ', '', 'lgaengenharia@lgaengenharia.com.br', '(54)98153-8608', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(149, 1, '5.00', '', '', '', '', 'FERNANDO M ROSSINI', 'IA SERVICE', '', 'fernando.rossini@iaservice.eng.br', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(150, 1, '5.00', '', '', '', '', 'PROSEGUR SISTEMAS DE SEGURANÇA LTDA', 'PROSEGUR SISTEMAS DE SEGURANÇA LTDA', '', 'ana.dorneles@prosegur.com', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(151, 1, '5.00', '', '', '', '', 'PROSEGUR BRASIL S/A ', 'PROSEGUR BRASIL S/A ', '', 'ana.dorneles@prosegur.com', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', ''),
-(152, 1, '2.90', '', '', '', '', 'GILBERTO ZAMIN', 'PER LIMPARE', '', 'perlimpare@gmail.com', '(54)99947-8316', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 0, '', '', '', 0, '', '', '', '', '', '', '', '');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `fornecedores_categorias`
 --
 
-CREATE TABLE IF NOT EXISTS `fornecedores_categorias` (
+CREATE TABLE `fornecedores_categorias` (
   `id` int(11) NOT NULL,
   `id_fornecedor` int(11) NOT NULL DEFAULT '0',
   `id_categoria` int(11) NOT NULL DEFAULT '0',
   `reparo_emergencial` tinyint(1) NOT NULL DEFAULT '0',
   `criado_em` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=259 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `fornecedores_categorias`
@@ -635,19 +311,20 @@ INSERT INTO `fornecedores_categorias` (`id`, `id_fornecedor`, `id_categoria`, `r
 (236, 152, 196, 0, '2017-09-29 17:43:15'),
 (237, 152, 198, 0, '2017-09-29 17:43:15'),
 (238, 152, 197, 0, '2017-09-29 17:43:15'),
-(239, 152, 199, 0, '2017-09-29 17:43:15');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fornecedores_imagens`
---
-
-CREATE TABLE IF NOT EXISTS `fornecedores_imagens` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `id_fornecedor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(239, 152, 199, 1, '2017-09-29 17:43:15'),
+(240, 1, 196, 0, '2017-10-21 13:07:47'),
+(241, 1, 197, 0, '2017-10-21 13:07:47'),
+(242, 1, 198, 0, '2017-10-21 13:07:47'),
+(243, 1, 199, 0, '2017-10-21 13:07:47'),
+(244, 1, 200, 0, '2017-10-21 13:07:47'),
+(245, 1, 201, 0, '2017-10-21 13:07:47'),
+(246, 1, 202, 0, '2017-10-21 13:07:47'),
+(247, 1, 203, 0, '2017-10-21 13:07:47'),
+(248, 1, 204, 0, '2017-10-21 13:07:47'),
+(249, 1, 205, 0, '2017-10-21 13:07:47'),
+(250, 1, 206, 0, '2017-10-21 13:07:47'),
+(251, 1, 207, 0, '2017-10-21 13:07:47'),
+(252, 8, 199, 1, '2017-10-21 13:46:35');
 
 -- --------------------------------------------------------
 
@@ -655,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `fornecedores_imagens` (
 -- Table structure for table `mensagens`
 --
 
-CREATE TABLE IF NOT EXISTS `mensagens` (
+CREATE TABLE `mensagens` (
   `id` int(11) NOT NULL,
   `mensagem` text,
   `id_solicitacao` int(11) NOT NULL DEFAULT '0',
@@ -663,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `mensagens` (
   `id_fornecedor` int(11) NOT NULL,
   `enviado_por` int(1) NOT NULL DEFAULT '0' COMMENT '0 = cliente, 1 = fornecedor',
   `criado_em` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `mensagens`
@@ -677,7 +354,24 @@ INSERT INTO `mensagens` (`id`, `mensagem`, `id_solicitacao`, `id_cliente`, `id_f
 (5, 'asdfaasfd', 1, 1, 1, 1, '2017-09-28 19:30:02'),
 (6, 'asdfaasfd2', 1, 1, 1, 1, '2017-09-28 20:08:03'),
 (7, 'asdfaasfd2', 1, 1, 1, 1, '2017-09-28 20:09:02'),
-(8, 'asdfaasfd2', 1, 1, 1, 1, '2017-09-28 20:10:02');
+(8, 'asdfaasfd2', 1, 1, 1, 1, '2017-09-28 20:10:02'),
+(9, 'mansndkaslnflksdfl  ds laskd ds dffgdfgfdgs ', 26, 1, 1, 0, '2017-10-21 13:21:57'),
+(10, 'mansndkaslnflksdfl  ds laskd ds dffgdfgfdgs ', 27, 1, 1, 0, '2017-10-21 13:22:24'),
+(11, 'mansndkaslnflksdfl  ds laskd ds dffgdfgfdgs ', 28, 1, 1, 0, '2017-10-21 13:23:55'),
+(12, 'mansndkaslnflksdfl  ds laskd ds dffgdfgfdgs ', 29, 1, 1, 0, '2017-10-21 13:24:31'),
+(13, 'mansndkaslnflksdfl  ds laskd ds dffgdfgfdgs ', 30, 1, 1, 0, '2017-10-21 13:24:53'),
+(14, 'mansndkaslnflksdfl  ds laskd ds dffgdfgfdgs ', 31, 1, 1, 0, '2017-10-21 13:45:55'),
+(15, 'mansndkaslnflksdfl  ds laskd ds dffgdfgfdgs ', 32, 1, 1, 0, '2017-10-21 13:47:04'),
+(16, 'mansndkaslnflksdfl  ds laskd ds dffgdfgfdgs ', 33, 1, 8, 0, '2017-10-21 13:57:28'),
+(17, '', 0, 1, 1, 0, '2017-10-21 15:21:17'),
+(18, '', 0, 1, 1, 0, '2017-10-21 15:22:21'),
+(19, '', 0, 1, 1, 0, '2017-10-21 15:22:30'),
+(20, '', 0, 1, 1, 0, '2017-10-21 15:23:35'),
+(21, '', 0, 1, 1, 0, '2017-10-21 15:24:51'),
+(22, '', 0, 1, 1, 0, '2017-10-21 15:27:54'),
+(23, '', 0, 1, 1, 0, '2017-10-21 15:28:37'),
+(24, '', 34, 1, 1, 0, '2017-10-21 15:31:41'),
+(25, '', 35, 1, 1, 0, '2017-10-21 16:09:47');
 
 -- --------------------------------------------------------
 
@@ -685,15 +379,15 @@ INSERT INTO `mensagens` (`id`, `mensagem`, `id_solicitacao`, `id_cliente`, `id_f
 -- Table structure for table `sis_activations`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_activations` (
-  `id` int(10) unsigned NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
+CREATE TABLE `sis_activations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `completed` tinyint(1) NOT NULL DEFAULT '0',
   `completed_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sis_activations`
@@ -721,12 +415,12 @@ INSERT INTO `sis_activations` (`id`, `user_id`, `code`, `completed`, `completed_
 -- Table structure for table `sis_basic_info`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_basic_info` (
+CREATE TABLE `sis_basic_info` (
   `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `basic_meta_keywords` text,
   `basic_meta_descricao` text
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sis_basic_info`
@@ -741,8 +435,8 @@ INSERT INTO `sis_basic_info` (`id`, `title`, `basic_meta_keywords`, `basic_meta_
 -- Table structure for table `sis_campo_modulo`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_campo_modulo` (
-  `id` int(11) unsigned NOT NULL,
+CREATE TABLE `sis_campo_modulo` (
+  `id` int(11) UNSIGNED NOT NULL,
   `label` varchar(120) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `nome` varchar(120) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `valor_padrao` text COLLATE utf8_unicode_ci,
@@ -751,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `sis_campo_modulo` (
   `listagem` tinyint(1) DEFAULT NULL,
   `required` tinyint(1) DEFAULT NULL,
   `ordem` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sis_campo_modulo`
@@ -760,65 +454,9 @@ CREATE TABLE IF NOT EXISTS `sis_campo_modulo` (
 INSERT INTO `sis_campo_modulo` (`id`, `label`, `nome`, `valor_padrao`, `tipo_campo`, `id_modulo`, `listagem`, `required`, `ordem`) VALUES
 (18, 'estado', 'estado', '', 'I', 5, 0, 0, 0),
 (19, 'sigla', 'sigla', '', 'I', 5, 0, 0, 0),
-(39, 'Nome', 'nome', '', 'I', 10, 1, 1, 0),
-(40, 'Udid', 'udid', '', 'I', 10, 0, 0, 0),
-(41, 'Id_facebook', 'id_facebook', '', 'I', 10, 0, 0, 0),
-(42, 'E-mail', 'email', '', 'I', 10, 1, 1, 0),
-(43, 'Telefone', 'telefone', '', 'I', 10, 1, 1, 0),
-(44, 'Data Nascimento', 'data_nascimento', '', 'D', 10, 0, 0, 0),
-(45, 'Endereço', 'endereco', '', 'I', 10, 0, 1, 2),
-(46, 'Estado', 'estado', '', 'I', 10, 0, 0, 3),
-(47, 'Cidade', 'cidade', '', 'SI', 10, 0, 1, 4),
-(48, 'Número', 'numero', '', 'I', 10, 0, 1, 5),
-(49, 'Complemento', 'complemento', '', 'I', 10, 0, 0, 6),
-(50, 'Latitude', 'latitude', '', 'I', 10, 0, 0, 0),
-(51, 'Longitude', 'longitude', '', 'I', 10, 0, 0, 0),
-(52, 'CEP', 'cep', '', 'I', 10, 0, 1, 1),
-(53, 'Criado_em', 'criado_em', '', 'DT', 10, 0, 0, 0),
-(54, 'Editado_em', 'editado_em', '', 'DT', 10, 0, 0, 0),
-(55, 'Nome/Razão Social', 'nome', '', 'I', 11, 1, 1, 0),
-(56, 'Nome Fantasia', 'nome_fantasia', '', 'I', 11, 0, 0, 1),
-(57, 'Senha', 'senha', '', 'I', 11, 0, 0, 11),
-(58, 'E-mail', 'email', '', 'I', 11, 1, 1, 3),
-(59, 'Telefone', 'telefone', '', 'I', 11, 1, 1, 4),
-(60, 'CNPJ', 'cnpj', '', 'I', 11, 1, 1, 2),
-(61, 'Udid', 'udid', '', 'I', 11, 0, 0, 0),
-(62, 'Endereço', 'endereco', '', 'I', 11, 0, 1, 6),
-(63, 'Número', 'numero', '', 'I', 11, 0, 1, 7),
-(64, 'Complemento', 'complemento', '', 'I', 11, 0, 0, 8),
-(65, 'Cidade', 'cidade', '', 'SC', 11, 0, 0, 9),
-(66, 'Estado', 'estado', '', 'I', 11, 0, 0, 10),
-(67, 'CEP', 'cep', '', 'I', 11, 0, 1, 5),
-(68, 'Latitude', 'latitude', '', 'I', 11, 0, 0, 0),
-(69, 'Longitude', 'longitude', '', 'I', 11, 0, 0, 0),
-(70, 'Criado_em', 'criado_em', '', 'I', 11, 0, 0, 0),
-(71, 'Editado_em', 'editado_em', '', 'I', 11, 0, 0, 0),
-(72, 'Descrição', 'descricao', '', 'T', 11, 0, 0, 4),
-(73, 'Bairro', 'bairro', '', 'I', 10, 0, 1, 3),
-(74, 'Bairro', 'bairro', '', 'I', 11, 0, 1, 8),
 (75, 'Nome', 'nome', '', 'I', 12, 1, 1, 1),
 (76, 'Código', 'codigo', '', 'I', 12, 1, 1, 0),
-(78, 'Título', 'titulo', '', 'I', 15, 1, 1, 0),
-(79, 'Descrição', 'descricao', '', 'T', 15, 0, 0, 0),
-(80, 'Endereço', 'endereco', '', 'T', 15, 0, 0, 0),
-(81, 'Aceito', 'aceito', '', 'INT', 15, 0, 0, 0),
-(82, 'Data/Hora realização', 'data_realizacao', '', 'DT', 15, 0, 0, 0),
-(83, 'Finalizado', 'finalizado', '', 'INT', 15, 0, 0, 0),
-(84, 'Reparo emergencial', 'reparo_emergencial', '', 'INT', 15, 0, 0, 0),
-(85, 'Valor', 'valor', '', 'I', 15, 0, 0, 0),
-(86, 'Valor Chamada', 'valor_chamada', '', 'I', 15, 0, 0, 0),
-(87, 'Data Criação', 'criado_em', '', 'DT', 15, 1, 0, 0),
-(88, 'Editado em', 'editado_em', '', 'DT', 15, 0, 0, 0),
-(90, 'Avaliação', 'avaliacao', '', 'INT', 17, 1, 0, 0),
-(91, 'Comentário', 'comentario', '', 'T', 17, 1, 0, 0),
-(92, 'Criado em', 'criado_em', '', 'DT', 17, 1, 0, 0),
-(96, 'Avaliação', 'avaliacao', '', 'INT', 19, 1, 0, 0),
-(97, 'Comentário', 'comentario', '', 'T', 19, 1, 0, 0),
-(98, 'Criado em', 'criado_em', '', 'DT', 19, 1, 0, 0),
-(99, 'Cidade', 'cidade', '', 'I', 20, 1, 1, 0),
-(100, 'Ativo', 'ativo', '', 'S', 11, 0, 0, 9),
-(101, 'Avaliação', 'avaliacao', '', 'INT', 10, 1, 0, 0),
-(102, 'Avaliação', 'avaliacao', '', 'INT', 11, 1, 0, 0);
+(99, 'Cidade', 'cidade', '', 'I', 20, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -826,8 +464,8 @@ INSERT INTO `sis_campo_modulo` (`id`, `label`, `nome`, `valor_padrao`, `tipo_cam
 -- Table structure for table `sis_fk_modulo`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_fk_modulo` (
-  `id` int(11) unsigned NOT NULL,
+CREATE TABLE `sis_fk_modulo` (
+  `id` int(11) UNSIGNED NOT NULL,
   `id_modulo` int(11) DEFAULT NULL,
   `id_modulo_relacionado` int(11) DEFAULT NULL,
   `id_campo_modulo_relacionado` int(11) DEFAULT NULL,
@@ -835,20 +473,13 @@ CREATE TABLE IF NOT EXISTS `sis_fk_modulo` (
   `label` varchar(255) DEFAULT NULL,
   `ordem` int(11) DEFAULT NULL,
   `listagem` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sis_fk_modulo`
 --
 
 INSERT INTO `sis_fk_modulo` (`id`, `id_modulo`, `id_modulo_relacionado`, `id_campo_modulo_relacionado`, `nome`, `label`, `ordem`, `listagem`) VALUES
-(7, 15, 10, 39, 'id_cliente', 'Cliente', 0, 1),
-(8, 15, 11, 55, 'id_fornecedor', 'Fornecedor', 0, 1),
-(12, 15, 12, 75, 'id_categoria', 'Categoria', 0, 1),
-(13, 17, 11, 55, 'id_fornecedor', 'Fornecedor', 0, 1),
-(14, 17, 10, 39, 'id_cliente', 'Cliente', 0, 1),
-(17, 19, 11, 55, 'id_fornecedor', 'Fornecedor', 0, 1),
-(18, 19, 10, 39, 'id_cliente', 'Cliente', 0, 1),
 (19, 20, 5, 19, 'estado', 'Estado', 1, 1);
 
 -- --------------------------------------------------------
@@ -857,7 +488,7 @@ INSERT INTO `sis_fk_modulo` (`id`, `id_modulo`, `id_modulo_relacionado`, `id_cam
 -- Table structure for table `sis_migrations`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_migrations` (
+CREATE TABLE `sis_migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -868,8 +499,8 @@ CREATE TABLE IF NOT EXISTS `sis_migrations` (
 -- Table structure for table `sis_modulos`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_modulos` (
-  `id` int(11) unsigned NOT NULL,
+CREATE TABLE `sis_modulos` (
+  `id` int(11) UNSIGNED NOT NULL,
   `label` varchar(120) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `icone` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ordem` int(11) NOT NULL DEFAULT '0',
@@ -882,7 +513,7 @@ CREATE TABLE IF NOT EXISTS `sis_modulos` (
   `imagem` tinyint(1) DEFAULT NULL,
   `galeria` tinyint(1) DEFAULT NULL,
   `nome_tabela` varchar(120) COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sis_modulos`
@@ -890,12 +521,7 @@ CREATE TABLE IF NOT EXISTS `sis_modulos` (
 
 INSERT INTO `sis_modulos` (`id`, `label`, `icone`, `ordem`, `menu`, `nome`, `id_tipo_modulo`, `rota`, `item_modulo`, `items_modulo`, `imagem`, `galeria`, `nome_tabela`) VALUES
 (5, 'Estados', 'fa-circle-o', 0, 0, 'Estados', 3, 'estados', 'estado', 'estados', 0, 0, 'estados'),
-(10, 'Clientes', 'ion-person-stalker', 0, 1, 'Clientes', 1, 'clientes', 'cliente', 'clientes', 1, 0, 'clientes'),
-(11, 'Fornecedores', 'ion-hammer', 0, 1, 'Fornecedores', 1, 'fornecedores', 'fornecedor', 'fornecedor', 1, 0, 'fornecedores'),
 (12, 'Categorias', 'fa-circle-o', 0, 1, 'Categorias', 1, 'categorias', 'categoria', 'categorias', 0, 0, 'categorias'),
-(15, 'Solicitações', 'ion-android-notifications', 0, 1, 'Solicitacoes', 1, 'solicitacoes', 'solicitacao', 'solicitacoes', 1, 0, 'solicitacoes'),
-(17, 'Avaliações', 'ion-ios-star', 1, 1, 'AvaliacoesFornecedores', 1, 'avaliacoes-fornecedores', 'avaliacao_fornecedor', 'avaliacoes_fornecedores', 0, 0, 'avaliacoes_fornecedores'),
-(19, 'Avaliações Clientes', 'fa-circle-o', 0, 0, 'AvaliacoesClientes', 1, 'avaliacoes-clientes', 'avaliacao_cliente', 'avaliações_clientes', 0, 0, 'avaliacoes_clientes'),
 (20, 'Cadastro de Cidades', 'ion-ios-location', 1, 1, 'Cidades', 1, 'cidades', 'cidade', 'cidades', 0, 0, 'cidades');
 
 -- --------------------------------------------------------
@@ -904,7 +530,7 @@ INSERT INTO `sis_modulos` (`id`, `label`, `icone`, `ordem`, `menu`, `nome`, `id_
 -- Table structure for table `sis_password_resets`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_password_resets` (
+CREATE TABLE `sis_password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
@@ -923,8 +549,8 @@ INSERT INTO `sis_password_resets` (`email`, `token`, `created_at`) VALUES
 -- Table structure for table `sis_permissions`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_permissions` (
-  `id` int(11) unsigned NOT NULL,
+CREATE TABLE `sis_permissions` (
+  `id` int(11) UNSIGNED NOT NULL,
   `id_role` int(11) DEFAULT NULL,
   `id_modulo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -935,13 +561,13 @@ CREATE TABLE IF NOT EXISTS `sis_permissions` (
 -- Table structure for table `sis_persistences`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_persistences` (
-  `id` int(10) unsigned NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
+CREATE TABLE `sis_persistences` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=420 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sis_persistences`
@@ -1172,12 +798,10 @@ INSERT INTO `sis_persistences` (`id`, `user_id`, `code`, `created_at`, `updated_
 (408, 1, 'pGtlvR2Y32SwXXxKTRMa7Mc7swPy1SJW', NULL, NULL),
 (409, 1, 'YXZEWiDdVBAl2PKm91NOOcF8aTtqotsW', NULL, NULL),
 (411, 9, 'UDS1ISbghyC8QsDVvqy1PRDTURjO10lZ', NULL, NULL),
-(413, 9, 'G655rQYX12efXukgOcIlrPdhKOzstiRi', NULL, NULL),
-(415, 9, 'mqIazoCJNZ8Pt0l5hDjtv6xtQ4twEZVD', NULL, NULL),
-(416, 1, 'AIolzCnsa6mT3vd26YtNZiRtPbB1oHmQ', NULL, NULL),
-(417, 9, 'NwxtB7dkqZbQfQMZcKITMcK5ybiyZ8JP', NULL, NULL),
-(418, 9, 'sXHC3XSx5Y1nRCsmBDv6bpN5wHOPGSmb', NULL, NULL),
-(419, 9, 'QcChlNKOelAzfKeXAjfdyYVghZy6og0p', NULL, NULL);
+(413, 1, 'TBYNAzs7EjZ3scpmkqHycgFjPkGwtSfz', NULL, NULL),
+(415, 1, 'WYNhizmptfGNA58EymxIiOCDd0uPD2n8', NULL, NULL),
+(416, 1, 'lJDoFB8bVDwa5wncyLki7dKE1jBnLiaz', NULL, NULL),
+(422, 1, 'sZX9Slrm51kRK8y8L1MGmOZsZgIoyzzF', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1185,9 +809,9 @@ INSERT INTO `sis_persistences` (`id`, `user_id`, `code`, `created_at`, `updated_
 -- Table structure for table `sis_reminders`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_reminders` (
-  `id` int(10) unsigned NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
+CREATE TABLE `sis_reminders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `completed` tinyint(1) NOT NULL DEFAULT '0',
   `completed_at` timestamp NULL DEFAULT NULL,
@@ -1201,22 +825,22 @@ CREATE TABLE IF NOT EXISTS `sis_reminders` (
 -- Table structure for table `sis_roles`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_roles` (
-  `id` int(10) unsigned NOT NULL,
+CREATE TABLE `sis_roles` (
+  `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `permissions` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sis_roles`
 --
 
 INSERT INTO `sis_roles` (`id`, `slug`, `name`, `permissions`, `created_at`, `updated_at`) VALUES
-(1, 'admins', 'Administradores', '{"batata.view":true,"batata.create":true,"batata.update":true,"batata.delete":true,"clientes.view":true,"clientes.create":true,"clientes.update":true,"clientes.delete":true,"consultas.view":true,"consultas.create":true,"consultas.update":true,"consultas.delete":true,"estados.view":true,"estados.create":true,"estados.update":true,"estados.delete":true,"cidades.view":true,"cidades.create":true,"cidades.update":true,"cidades.delete":true,"tipos.view":true,"tipos.create":true,"tipos.update":true,"tipos.delete":true,"noticias.view":true,"noticias.create":true,"noticias.update":true,"noticias.delete":true,"fornecedores.view":true,"fornecedores.create":true,"fornecedores.update":true,"fornecedores.delete":true,"categorias.view":true,"categorias.create":true,"categorias.update":true,"categorias.delete":true,"solicitacoes.view":true,"solicitacoes.create":true,"solicitacoes.update":true,"solicitacoes.delete":true,"avaliacoes_fornecedores.view":true,"avaliacoes_fornecedores.create":true,"avaliacoes_fornecedores.update":true,"avaliacoes_fornecedores.delete":true,"avaliacoes_clientes.view":true,"avaliacoes_clientes.create":true,"avaliacoes_clientes.update":true,"avaliacoes_clientes.delete":true}', '2017-07-20 18:32:20', '2017-07-20 18:32:20'),
-(3, 'usuarios', 'Usuários', '{"clientes.view":true,"clientes.create":true,"clientes.update":true,"clientes.delete":true,"fornecedores.view":true,"fornecedores.create":true,"fornecedores.update":true,"fornecedores.delete":true,"categorias.view":true,"categorias.create":true,"categorias.update":true,"categorias.delete":true,"solicitacoes.view":true,"solicitacoes.create":true,"solicitacoes.update":true,"solicitacoes.delete":true,"avaliacoes_fornecedores.view":true,"avaliacoes_fornecedores.create":true,"avaliacoes_fornecedores.update":true,"avaliacoes_fornecedores.delete":true,"avaliacoes_clientes.view":true,"avaliacoes_clientes.create":true,"avaliacoes_clientes.update":true,"avaliacoes_clientes.delete":true,"cidades.view":true,"cidades.create":true,"cidades.update":true,"cidades.delete":true}', '2017-07-20 20:29:49', '2017-07-20 20:29:49');
+(1, 'admins', 'Administradores', '{\"batata.view\":true,\"batata.create\":true,\"batata.update\":true,\"batata.delete\":true,\"clientes.view\":true,\"clientes.create\":true,\"clientes.update\":true,\"clientes.delete\":true,\"consultas.view\":true,\"consultas.create\":true,\"consultas.update\":true,\"consultas.delete\":true,\"estados.view\":true,\"estados.create\":true,\"estados.update\":true,\"estados.delete\":true,\"cidades.view\":true,\"cidades.create\":true,\"cidades.update\":true,\"cidades.delete\":true,\"tipos.view\":true,\"tipos.create\":true,\"tipos.update\":true,\"tipos.delete\":true,\"noticias.view\":true,\"noticias.create\":true,\"noticias.update\":true,\"noticias.delete\":true,\"fornecedores.view\":true,\"fornecedores.create\":true,\"fornecedores.update\":true,\"fornecedores.delete\":true,\"categorias.view\":true,\"categorias.create\":true,\"categorias.update\":true,\"categorias.delete\":true,\"solicitacoes.view\":true,\"solicitacoes.create\":true,\"solicitacoes.update\":true,\"solicitacoes.delete\":true,\"avaliacoes_fornecedores.view\":true,\"avaliacoes_fornecedores.create\":true,\"avaliacoes_fornecedores.update\":true,\"avaliacoes_fornecedores.delete\":true,\"avaliacoes_clientes.view\":true,\"avaliacoes_clientes.create\":true,\"avaliacoes_clientes.update\":true,\"avaliacoes_clientes.delete\":true,\"teste.view\":true,\"teste.create\":true,\"teste.update\":true,\"teste.delete\":true}', '2017-07-20 18:32:20', '2017-07-20 18:32:20'),
+(3, 'usuarios', 'Usuários', '{\"clientes.view\":true,\"clientes.create\":true,\"clientes.update\":true,\"clientes.delete\":true,\"fornecedores.view\":true,\"fornecedores.create\":true,\"fornecedores.update\":true,\"fornecedores.delete\":true,\"categorias.view\":true,\"categorias.create\":true,\"categorias.update\":true,\"categorias.delete\":true,\"solicitacoes.view\":true,\"solicitacoes.create\":true,\"solicitacoes.update\":true,\"solicitacoes.delete\":true,\"avaliacoes_fornecedores.view\":true,\"avaliacoes_fornecedores.create\":true,\"avaliacoes_fornecedores.update\":true,\"avaliacoes_fornecedores.delete\":true,\"avaliacoes_clientes.view\":true,\"avaliacoes_clientes.create\":true,\"avaliacoes_clientes.update\":true,\"avaliacoes_clientes.delete\":true,\"cidades.view\":true,\"cidades.create\":true,\"cidades.update\":true,\"cidades.delete\":true}', '2017-07-20 20:29:49', '2017-07-20 20:29:49');
 
 -- --------------------------------------------------------
 
@@ -1224,9 +848,9 @@ INSERT INTO `sis_roles` (`id`, `slug`, `name`, `permissions`, `created_at`, `upd
 -- Table structure for table `sis_role_users`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_role_users` (
-  `user_id` int(10) unsigned NOT NULL,
-  `role_id` int(10) unsigned NOT NULL,
+CREATE TABLE `sis_role_users` (
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -1236,7 +860,7 @@ CREATE TABLE IF NOT EXISTS `sis_role_users` (
 --
 
 INSERT INTO `sis_role_users` (`user_id`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2017-08-31 22:26:41', '2017-08-31 22:26:41'),
+(1, 1, '2018-05-17 00:15:00', '2018-05-17 00:15:00'),
 (2, 3, '2017-08-08 20:37:43', '2017-08-08 20:37:43'),
 (3, 2, '2017-07-20 21:36:06', '2017-07-20 21:36:06'),
 (3, 3, '2017-07-24 21:23:09', '2017-07-24 21:23:09'),
@@ -1244,7 +868,7 @@ INSERT INTO `sis_role_users` (`user_id`, `role_id`, `created_at`, `updated_at`) 
 (6, 3, '2017-08-22 16:56:30', '2017-08-22 16:56:30'),
 (7, 3, '2017-08-08 20:49:12', '2017-08-08 20:49:12'),
 (8, 3, '2017-08-22 21:22:57', '2017-08-22 21:22:57'),
-(9, 3, '2017-09-29 22:03:59', '2017-09-29 22:03:59'),
+(9, 3, '2017-09-29 20:49:08', '2017-09-29 20:49:08'),
 (18, 3, '2017-07-20 23:52:53', '2017-07-20 23:52:53'),
 (19, 1, '2017-07-21 00:00:00', '2017-07-21 00:00:00'),
 (20, 1, '2017-07-21 00:00:21', '2017-07-21 00:00:21'),
@@ -1256,14 +880,14 @@ INSERT INTO `sis_role_users` (`user_id`, `role_id`, `created_at`, `updated_at`) 
 -- Table structure for table `sis_throttle`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_throttle` (
-  `id` int(10) unsigned NOT NULL,
-  `user_id` int(10) unsigned DEFAULT NULL,
+CREATE TABLE `sis_throttle` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
   `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ip` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sis_throttle`
@@ -1398,23 +1022,11 @@ INSERT INTO `sis_throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `update
 (126, NULL, 'ip', '127.0.0.1', NULL, NULL),
 (127, 1, 'user', NULL, NULL, NULL),
 (128, NULL, 'global', NULL, NULL, NULL),
-(129, NULL, 'ip', '189.127.16.97', NULL, NULL),
+(129, NULL, 'ip', '::1', NULL, NULL),
 (130, 1, 'user', NULL, NULL, NULL),
 (131, NULL, 'global', NULL, NULL, NULL),
-(132, NULL, 'ip', '189.127.16.97', NULL, NULL),
-(133, 9, 'user', NULL, NULL, NULL),
-(134, NULL, 'global', NULL, NULL, NULL),
-(135, NULL, 'ip', '177.132.206.136', NULL, NULL),
-(136, 9, 'user', NULL, NULL, NULL),
-(137, NULL, 'global', NULL, NULL, NULL),
-(138, NULL, 'ip', '177.132.206.136', NULL, NULL),
-(139, 9, 'user', NULL, NULL, NULL),
-(140, NULL, 'global', NULL, NULL, NULL),
-(141, NULL, 'ip', '189.127.16.97', NULL, NULL),
-(142, 9, 'user', NULL, NULL, NULL),
-(143, NULL, 'global', NULL, NULL, NULL),
-(144, NULL, 'ip', '189.127.16.97', NULL, NULL),
-(145, 9, 'user', NULL, NULL, NULL);
+(132, NULL, 'ip', '::1', NULL, NULL),
+(133, 1, 'user', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1422,15 +1034,15 @@ INSERT INTO `sis_throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `update
 -- Table structure for table `sis_tipos_modulo`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_tipos_modulo` (
-  `id` int(11) unsigned NOT NULL,
+CREATE TABLE `sis_tipos_modulo` (
+  `id` int(11) UNSIGNED NOT NULL,
   `nome` varchar(120) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `controller_admin` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
   `model` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
   `view_admin_index` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
   `view_admin_form` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
   `rotas` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sis_tipos_modulo`
@@ -1447,7 +1059,7 @@ INSERT INTO `sis_tipos_modulo` (`id`, `nome`, `controller_admin`, `model`, `view
 -- Table structure for table `sis_users`
 --
 
-CREATE TABLE IF NOT EXISTS `sis_users` (
+CREATE TABLE `sis_users` (
   `id` int(11) NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cnpj` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
@@ -1483,55 +1095,14 @@ CREATE TABLE IF NOT EXISTS `sis_users` (
   `hora_fim_tarde` time NOT NULL DEFAULT '00:00:00',
   `hora_inicio_noite` time NOT NULL DEFAULT '00:00:00',
   `hora_fim_noite` time NOT NULL DEFAULT '00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sis_users`
 --
 
 INSERT INTO `sis_users` (`id`, `email`, `cnpj`, `password`, `permissions`, `responsavel`, `last_login`, `first_name`, `last_name`, `created_at`, `updated_at`, `receber_notificacoes`, `thumbnail_principal`, `id_condomino`, `id_criador`, `udid`, `latitude`, `longitude`, `telefone`, `telefone2`, `celular`, `descricao`, `endereco`, `estado`, `cidade`, `cep`, `numero`, `complemento`, `bairro`, `hora_inicio_manha`, `hora_fim_manha`, `hora_inicio_tarde`, `hora_fim_tarde`, `hora_inicio_noite`, `hora_fim_noite`) VALUES
-(1, 'ricardo@duostudio.com.br', '00.000.000/0000-00', '$2y$10$vGH4bEBTQVbQgo4Rcbd0NuoNQKE35uSA.Nhg0lWpAqUDo2UWBYtg6', NULL, 'ricardo', '2017-10-02 15:25:43', 'Ricardo Farias', 'Tronca', '2017-02-21 05:00:34', '2017-10-02 12:25:43', 0, 'thumb_1504207575-logo.jpg', NULL, NULL, NULL, '-15.753151', '-47.880227200000036', '(54)9999-9999', '', '', '', 'Rua Ernesto Alves', 23, 3945, '95020-360', '123456', '', 'Lurdes', '12:00:00', '00:00:00', '00:00:00', '00:00:00', '15:30:00', '17:00:00'),
-(9, 'prolar@prolar.com.br', '11.111.111/1111-11', '$2y$10$R0VvpXaRVLG9sVChwXb90ejzeP2EktiTlvh/jO0FHTq0PjxmGLRKm', NULL, 'Prolar', '2017-10-03 21:03:16', 'Prolar', NULL, '2017-09-29 17:49:08', '2017-10-03 18:03:16', 0, '', NULL, NULL, NULL, '-29.1675192', '-51.16811640000003', '', '', '', '', 'Avenida Júlio de Castilhos', 23, 1, '95010-003', '657', '', 'Lurdes', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `solicitacoes`
---
-
-CREATE TABLE IF NOT EXISTS `solicitacoes` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `meta_keywords` text,
-  `meta_descricao` text,
-  `slug` varchar(255) NOT NULL,
-  `titulo` varchar(255) DEFAULT NULL,
-  `descricao` text,
-  `endereco` text,
-  `aceito` int(11) DEFAULT '2',
-  `data_realizacao` timestamp NULL DEFAULT NULL,
-  `finalizado` int(11) DEFAULT '2',
-  `reparo_emergencial` int(11) DEFAULT NULL,
-  `valor` varchar(255) DEFAULT NULL,
-  `valor_chamada` varchar(255) DEFAULT NULL,
-  `criado_em` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `editado_em` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_cliente` int(11) DEFAULT NULL,
-  `id_fornecedor` int(11) DEFAULT NULL,
-  `id_categoria` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `solicitacoes`
---
-
-INSERT INTO `solicitacoes` (`id`, `thumbnail_principal`, `meta_keywords`, `meta_descricao`, `slug`, `titulo`, `descricao`, `endereco`, `aceito`, `data_realizacao`, `finalizado`, `reparo_emergencial`, `valor`, `valor_chamada`, `criado_em`, `editado_em`, `id_cliente`, `id_fornecedor`, `id_categoria`) VALUES
-(9, NULL, NULL, NULL, '', 'Reparo teste', 'sd;lsdf;lsdfl;dfk;lskfl;k; l k;la', 'Rua tal, 123', 2, '2017-09-25 14:51:15', 2, 0, NULL, NULL, '2017-09-25 14:51:15', '2017-09-29 14:38:06', 1, NULL, 280),
-(10, NULL, NULL, NULL, '', 'Reparo teste', 'sd;lsdf;lsdfl;dfk;lskfl;k; l k;la', 'Rua tal, 123', 2, '2017-09-25 14:51:18', 2, 0, NULL, NULL, '2017-09-25 14:51:18', '2017-09-29 14:38:06', 1, NULL, 280),
-(11, '""', NULL, NULL, '', 'Reparo teste', 'sd;lsdf;lsdfl;dfk;lskfl;k; l k;la', 'Rua tal, 123', 2, '2017-09-26 17:00:10', 2, 1, NULL, NULL, '2017-09-26 17:00:10', '2017-09-29 14:38:06', 1, NULL, 280),
-(12, '""', NULL, NULL, '', 'Reparo teste', 'sd;lsdf;lsdfl;dfk;lskfl;k; l k;la', 'Rua tal, 123', 2, '2017-09-26 18:00:29', 2, 1, NULL, NULL, '2017-09-26 18:00:29', '2017-09-29 14:38:06', 1, NULL, 280),
-(13, '""', NULL, NULL, '', 'Reparo teste', 'sd;lsdf;lsdfl;dfk;lskfl;k; l k;la', 'Rua tal, 123', 2, '2017-09-26 18:00:57', 2, 1, NULL, NULL, '2017-09-26 18:00:57', '2017-09-29 14:38:06', 1, NULL, 280),
-(14, '""', NULL, NULL, '', 'Reparo teste', NULL, 'Rua tal, 123', 2, '2017-09-26 18:33:58', 2, 1, NULL, NULL, '2017-09-26 18:33:58', '2017-09-29 14:38:06', 1, NULL, 280);
+(1, 'admin@admin.com.br', '00.000.000/0000-00', '$2y$10$E3joI62VBhjAaC9xSM6FoOwIOOrGNk1S6cuhdMo/jQp4zERWaTMYG', NULL, 'admin', '2018-05-17 02:34:18', 'admin', '', '2017-02-21 05:00:34', '2018-05-16 23:34:18', 0, 'thumb_1526505279-Stephen.png', NULL, NULL, NULL, '-15.753151', '-47.880227200000036', '(54)9999-9999', '', '', '', 'Rua Ernesto Alves', 23, 1, '95020-360', '123456', '', 'Lurdes', '12:00:00', '00:00:00', '00:00:00', '00:00:00', '15:30:00', '17:00:00');
 
 -- --------------------------------------------------------
 
@@ -1539,7 +1110,7 @@ INSERT INTO `solicitacoes` (`id`, `thumbnail_principal`, `meta_keywords`, `meta_
 -- Table structure for table `solicitacoes_fornecedores`
 --
 
-CREATE TABLE IF NOT EXISTS `solicitacoes_fornecedores` (
+CREATE TABLE `solicitacoes_fornecedores` (
   `id` int(11) NOT NULL,
   `id_fornecedor` int(11) NOT NULL DEFAULT '0',
   `id_cliente` int(11) NOT NULL DEFAULT '0',
@@ -1547,51 +1118,58 @@ CREATE TABLE IF NOT EXISTS `solicitacoes_fornecedores` (
   `valor` decimal(10,0) NOT NULL DEFAULT '0',
   `valor_chamada` decimal(10,0) NOT NULL DEFAULT '0',
   `aceito` int(11) NOT NULL DEFAULT '2'
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `solicitacoes_imagens`
---
-
-CREATE TABLE IF NOT EXISTS `solicitacoes_imagens` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `id_solicitacao` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `solicitacoes_fornecedores`
+--
+
+INSERT INTO `solicitacoes_fornecedores` (`id`, `id_fornecedor`, `id_cliente`, `id_solicitacao`, `valor`, `valor_chamada`, `aceito`) VALUES
+(1, 1, 1, 1, '0', '0', 2),
+(2, 1, 1, 5, '0', '0', 2),
+(3, 1, 1, 6, '0', '0', 2),
+(4, 1, 1, 9, '0', '0', 2),
+(5, 1, 1, 10, '0', '0', 2),
+(6, 1, 1, 0, '0', '0', 2),
+(7, 1, 1, 0, '0', '0', 2),
+(8, 3, 1, 0, '0', '0', 2),
+(9, 2, 1, 0, '0', '0', 2),
+(10, 1, 1, 0, '0', '0', 2),
+(11, 1, 1, 0, '0', '0', 2),
+(12, 1, 1, 0, '0', '0', 2),
+(13, 1, 1, 0, '0', '0', 2),
+(14, 2, 1, 0, '0', '0', 2),
+(15, 1, 1, 0, '0', '0', 2),
+(16, 1, 1, 0, '0', '0', 2),
+(17, 3, 1, 0, '0', '0', 2),
+(18, 3, 1, 0, '0', '0', 2),
+(19, 2, 1, 11, '0', '0', 2),
+(20, 3, 1, 12, '0', '0', 2),
+(21, 1, 1, 13, '0', '0', 2),
+(22, 2, 1, 14, '0', '0', 2),
+(23, 1, 1, 14, '0', '0', 2),
+(24, 1, 1, 26, '0', '0', 2),
+(25, 1, 1, 27, '0', '0', 2),
+(26, 1, 1, 28, '0', '0', 2),
+(27, 1, 1, 29, '0', '0', 2),
+(28, 1, 1, 30, '0', '0', 2),
+(29, 1, 1, 31, '0', '0', 2),
+(30, 1, 1, 32, '0', '0', 2),
+(31, 8, 1, 33, '0', '0', 2),
+(32, 1, 1, 0, '0', '0', 2),
+(33, 1, 1, 0, '0', '0', 2),
+(34, 1, 1, 0, '0', '0', 2),
+(35, 1, 1, 0, '0', '0', 2),
+(36, 1, 1, 0, '0', '0', 2),
+(37, 1, 1, 0, '0', '0', 2),
+(38, 1, 1, 0, '0', '0', 2),
+(39, 1, 1, 0, '0', '0', 2),
+(40, 1, 1, 34, '0', '0', 2),
+(41, 1, 1, 35, '0', '0', 2);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `avaliacoes_clientes`
---
-ALTER TABLE `avaliacoes_clientes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_fornecedor` (`id_fornecedor`),
-  ADD KEY `id_cliente` (`id_cliente`);
-
---
--- Indexes for table `avaliacoes_clientes_imagens`
---
-ALTER TABLE `avaliacoes_clientes_imagens`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `avaliacoes_fornecedores`
---
-ALTER TABLE `avaliacoes_fornecedores`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_fornecedor` (`id_fornecedor`),
-  ADD KEY `id_cliente` (`id_cliente`);
-
---
--- Indexes for table `avaliacoes_fornecedores_imagens`
---
-ALTER TABLE `avaliacoes_fornecedores_imagens`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categorias`
@@ -1619,29 +1197,11 @@ ALTER TABLE `cidades_imagens`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `clientes`
---
-ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `clientes_imagens`
---
-ALTER TABLE `clientes_imagens`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `estados`
 --
 ALTER TABLE `estados`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_Estado_pais` (`pais`);
-
---
--- Indexes for table `fornecedores`
---
-ALTER TABLE `fornecedores`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `fornecedores_categorias`
@@ -1650,12 +1210,6 @@ ALTER TABLE `fornecedores_categorias`
   ADD PRIMARY KEY (`id`) USING BTREE,
   ADD KEY `id_categoria` (`id_categoria`),
   ADD KEY `id_fornecedor` (`id_fornecedor`) USING BTREE;
-
---
--- Indexes for table `fornecedores_imagens`
---
-ALTER TABLE `fornecedores_imagens`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `mensagens`
@@ -1755,15 +1309,6 @@ ALTER TABLE `sis_users`
   ADD KEY `estado` (`estado`);
 
 --
--- Indexes for table `solicitacoes`
---
-ALTER TABLE `solicitacoes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `clientes` (`id_cliente`),
-  ADD KEY `fornecedores` (`id_fornecedor`),
-  ADD KEY `categoria` (`id_categoria`) USING BTREE;
-
---
 -- Indexes for table `solicitacoes_fornecedores`
 --
 ALTER TABLE `solicitacoes_fornecedores`
@@ -1773,40 +1318,14 @@ ALTER TABLE `solicitacoes_fornecedores`
   ADD KEY `id_fornecedor` (`id_fornecedor`);
 
 --
--- Indexes for table `solicitacoes_imagens`
---
-ALTER TABLE `solicitacoes_imagens`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `avaliacoes_clientes`
---
-ALTER TABLE `avaliacoes_clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `avaliacoes_clientes_imagens`
---
-ALTER TABLE `avaliacoes_clientes_imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `avaliacoes_fornecedores`
---
-ALTER TABLE `avaliacoes_fornecedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `avaliacoes_fornecedores_imagens`
---
-ALTER TABLE `avaliacoes_fornecedores_imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=351;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=349;
 --
 -- AUTO_INCREMENT for table `categorias_imagens`
 --
@@ -1816,139 +1335,95 @@ ALTER TABLE `categorias_imagens`
 -- AUTO_INCREMENT for table `cidades`
 --
 ALTER TABLE `cidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `cidades_imagens`
 --
 ALTER TABLE `cidades_imagens`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `clientes`
---
-ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `clientes_imagens`
---
-ALTER TABLE `clientes_imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
---
--- AUTO_INCREMENT for table `fornecedores`
---
-ALTER TABLE `fornecedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=154;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `fornecedores_categorias`
 --
 ALTER TABLE `fornecedores_categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=259;
---
--- AUTO_INCREMENT for table `fornecedores_imagens`
---
-ALTER TABLE `fornecedores_imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
 --
 -- AUTO_INCREMENT for table `mensagens`
 --
 ALTER TABLE `mensagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `sis_activations`
 --
 ALTER TABLE `sis_activations`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `sis_basic_info`
 --
 ALTER TABLE `sis_basic_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `sis_campo_modulo`
 --
 ALTER TABLE `sis_campo_modulo`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=103;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 --
 -- AUTO_INCREMENT for table `sis_fk_modulo`
 --
 ALTER TABLE `sis_fk_modulo`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `sis_modulos`
 --
 ALTER TABLE `sis_modulos`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `sis_permissions`
 --
 ALTER TABLE `sis_permissions`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sis_persistences`
 --
 ALTER TABLE `sis_persistences`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=420;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
 --
 -- AUTO_INCREMENT for table `sis_reminders`
 --
 ALTER TABLE `sis_reminders`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sis_roles`
 --
 ALTER TABLE `sis_roles`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sis_throttle`
 --
 ALTER TABLE `sis_throttle`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=146;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 --
 -- AUTO_INCREMENT for table `sis_tipos_modulo`
 --
 ALTER TABLE `sis_tipos_modulo`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sis_users`
 --
 ALTER TABLE `sis_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `solicitacoes`
---
-ALTER TABLE `solicitacoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `solicitacoes_fornecedores`
 --
 ALTER TABLE `solicitacoes_fornecedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
---
--- AUTO_INCREMENT for table `solicitacoes_imagens`
---
-ALTER TABLE `solicitacoes_imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `avaliacoes_clientes`
---
-ALTER TABLE `avaliacoes_clientes`
-  ADD CONSTRAINT `avaliacoes_clientes_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `avaliacoes_clientes_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `avaliacoes_fornecedores`
---
-ALTER TABLE `avaliacoes_fornecedores`
-  ADD CONSTRAINT `avaliacoes_fornecedores_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `avaliacoes_fornecedores_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `cidades`
@@ -1963,18 +1438,11 @@ ALTER TABLE `fornecedores_categorias`
   ADD CONSTRAINT `fk_id_fornecedor` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id`);
 
 --
--- Constraints for table `solicitacoes`
---
-ALTER TABLE `solicitacoes`
-  ADD CONSTRAINT `solicitacoes_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `solicitacoes_ibfk_2` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `solicitacoes_fornecedores`
 --
 ALTER TABLE `solicitacoes_fornecedores`
-  ADD CONSTRAINT `fk_solic_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_solic_forn` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_solic_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`),
+  ADD CONSTRAINT `fk_solic_forn` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
