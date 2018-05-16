@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 17, 2018 at 01:37 AM
+-- Generation Time: May 17, 2018 at 01:48 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.6
 
@@ -23,193 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorias`
---
-
-CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `meta_keywords` text,
-  `meta_descricao` text,
-  `slug` varchar(255) NOT NULL,
-  `codigo` varchar(255) DEFAULT NULL,
-  `nome` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `categorias`
---
-
-INSERT INTO `categorias` (`id`, `thumbnail_principal`, `meta_keywords`, `meta_descricao`, `slug`, `codigo`, `nome`) VALUES
-(196, '', '', '', '', '050.000.000', 'RAMOS DE FORNECEDORES EM GERAL'),
-(197, '', '', '', '', '050.001.000', 'RAMOS DE FORNECEDORES EM GERAL'),
-(198, '', '', '', '', '050.001.001', 'ABASTECIMENTO DE AGUA'),
-(199, '', '', '', '', '050.001.002', 'ALARMES'),
-(200, '', '', '', '', '050.001.003', 'ANALISE E TRATAMENTO DE AGUA'),
-(201, '', '', '', '', '050.001.004', 'ANTENAS'),
-(202, '', '', '', '', '050.001.005', 'DECORAÇÕES (TAPETES E PERSIANAS)'),
-(203, '', '', '', '', '050.001.006', 'CALÇADAS '),
-(204, '', '', '', '', '050.001.007', 'CERCAS ELETRÔNICAS'),
-(205, '', '', '', '', '050.001.008', 'CIRCUITO FECHADO DE TV'),
-(206, '', '', '', '', '050.001.009', 'COMÉRCIO DE PEDRAS'),
-(207, '', '', '', '', '050.001.010', 'MÁRMORES E GRANITOS'),
-(208, '', '', '', '', '050.001.011', 'CONSTRUTORAS'),
-(209, '', '', '', '', '050.001.012', 'CONTAINERS'),
-(210, '', '', '', '', '050.001.013', 'CORRETORES'),
-(211, '', '', '', '', '050.001.014', 'DESENTUPIDORAS'),
-(212, '', '', '', '', '050.001.015', 'DESRATIZAÇÃO E DESINSETIZAÇÃO'),
-(213, '', '', '', '', '050.001.016', 'DETRITUS'),
-(214, '', '', '', '', '050.001.017', 'ELABORAÇÃO DE PREVENÇÃO PPCI'),
-(215, '', '', '', '', '050.001.018', 'ELETRICISTAS'),
-(216, '', '', '', '', '050.001.019', 'EMERGÊNCIA MÉDICA'),
-(217, '', '', '', '', '050.001.020', 'ELEVADORES'),
-(218, '', '', '', '', '050.001.021', 'EMPRESAS DE TELECOMUNICAÇÃO'),
-(219, '', '', '', '', '050.001.022', 'ENCANADORES'),
-(220, '', '', '', '', '050.001.023', 'ENGENHARIA CIVIL'),
-(221, '', '', '', '', '050.001.024', 'ENGENHARIA ELÉTRICA'),
-(222, '', '', '', '', '050.001.025', 'PEDREIROS'),
-(223, '', '', '', '', '050.001.026', 'ESTOFADOS'),
-(224, '', '', '', '', '050.001.027', 'ESTRUTURAS METÁLICAS'),
-(225, '', '', '', '', '050.001.028', 'EXTINTORES'),
-(226, '', '', '', '', '050.001.029', 'FECHADURAS E CHAVES'),
-(227, '', '', '', '', '050.001.030', 'FERRAGENS'),
-(228, '', '', '', '', '050.001.031', 'FONECEDORES DE GÁS A GRANEL'),
-(229, '', '', '', '', '050.001.032', 'FORNECEDORES DE GÁS P 45'),
-(230, '', '', '', '', '050.001.033', 'FORNECEDORES DE LENHA'),
-(231, '', '', '', '', '050.001.034', 'FORNECEDORES DE ÓLEO DIESEL'),
-(232, '', '', '', '', '050.001.035', 'PRODUTOS DE LIMPEZA '),
-(233, '', '', '', '', '050.001.036', ' TINTAS'),
-(234, '', '', '', '', '050.001.037', 'FUNILARIAS'),
-(235, '', '', '', '', '050.001.038', 'GRANILHAS'),
-(236, '', '', '', '', '050.001.039', 'MATERIAL ELÉTRICO'),
-(237, '', '', '', '', '050.001.040', 'IMPERMEABILIZAÇÃO'),
-(238, '', '', '', '', '050.001.041', 'PARA-RAIOS E HIDRANTES'),
-(239, '', '', '', '', '050.001.042', 'LIMPEZA'),
-(240, '', '', '', '', '050.001.043', 'LIMPEZA DE FACHADAS'),
-(241, '', '', '', '', '050.001.044', 'LIMPEZA DE CAIXAS DE ÁGUA'),
-(242, '', '', '', '', '050.001.045', 'LIMPEZA DE CAIXAS DE GORDURA'),
-(243, '', '', '', '', '050.001.046', 'MADEIREIRAS'),
-(244, '', '', '', '', '050.001.047', 'MANUTENÇÃO DE BOMBAS'),
-(245, '', '', '', '', '050.001.048', 'MANUTENÇÃO DE GERADORES'),
-(246, '', '', '', '', '050.001.049', 'MANUTENÇÃO DE INTERFONES'),
-(247, '', '', '', '', '050.001.050', 'MANUTENÇÃO DE PORTÕES ELETRÔNICOS'),
-(248, '', '', '', '', '050.001.051', 'MANUTENÇÃO DE SISTEMAS TELEFÔNICOS'),
-(249, '', '', '', '', '050.001.052', 'MANUTENÇÃO DE TRANSFORMADORES'),
-(250, '', '', '', '', '050.001.053', 'MAQUINAS E EQUIPAMENTOS PARA JARDINS'),
-(251, '', '', '', '', '050.001.054', 'MARCENARIAS'),
-(252, '', '', '', '', '050.001.055', 'MATERIAIS DE CONSTRUÇÃO'),
-(253, '', '', '', '', '050.001.056', 'MATERIAIS HIDROSANITÁRIOS'),
-(254, '', '', '', '', '050.001.057', 'MONITORAMENTO REMOTO'),
-(255, '', '', '', '', '050.001.058', 'MÓVEIS'),
-(256, '', '', '', '', '050.001.059', 'PERSIANAS'),
-(257, '', '', '', '', '050.001.060', 'PINTURAS'),
-(258, '', '', '', '', '050.001.061', 'PISCINAS E CHAFARISES'),
-(259, '', '', '', '', '050.001.062', 'PLACAS E LETREIROS'),
-(260, '', '', '', '', '050.001.063', 'PLANOS DE SAÚDE'),
-(261, '', '', '', '', '050.001.064', 'PLANTAS, INSUMOS E HERBICIDAS'),
-(262, '', '', '', '', '050.001.065', 'RECARGA E RETESTE DE EXTINTORES'),
-(263, '', '', '', '', '050.001.066', 'REFRIGERAÇÃO'),
-(264, '', '', '', '', '050.001.067', 'REMOÇÃO DE ENTULHOS'),
-(265, '', '', '', '', '050.001.068', 'SACOS DE LIXO'),
-(266, '', '', '', '', '050.001.069', 'SERRALHERIAS'),
-(267, '', '', '', '', '050.001.070', 'SERVIÇOS DE CONFECÇÕES'),
-(268, '', '', '', '', '050.001.071', 'SERVIÇOS E PEÇAS DE AR CONDICIONADO'),
-(269, '', '', '', '', '050.001.072', 'SERVIÇOS E PEÇAS DE CALDEIRAS'),
-(270, '', '', '', '', '050.001.073', 'JARDINAGEM / PAISAGISMO'),
-(271, '', '', '', '', '050.001.074', 'SERVIÇOS EM POLICARBONATO'),
-(272, '', '', '', '', '050.001.075', 'TAPETES PERSONALIZADOS'),
-(273, '', '', '', '', '050.001.076', 'TELAS'),
-(274, '', '', '', '', '050.001.077', 'REFORMA E CONSERTO EM TELHADOS'),
-(275, '', '', '', '', '050.001.078', 'TOALHEIROS'),
-(276, '', '', '', '', '050.001.079', 'TOLDOS'),
-(277, '', '', '', '', '050.001.080', 'TV POR ASSINATURA'),
-(278, '', '', '', '', '050.001.081', 'VIDRACEIROS'),
-(279, '', '', '', '', '050.001.082', 'VIDROS TEMPERADOS'),
-(280, '', '', '', '', '050.001.083', 'VIGILÂNCIA '),
-(281, '', '', '', '', '050.001.084', 'LIMPEZA CARPETES, TAPETES E ESTOFADOS'),
-(282, '', '', '', '', '050.001.085', 'MANUTENÇÃO GERAL - FAZ TUDO'),
-(283, '', '', '', '', '050.001.086', 'SEGUROS'),
-(284, '', '', '', '', '050.001.087', 'LIMPEZA DE FOSSAS'),
-(285, '', '', '', '', '050.001.088', 'DEDETIZAÇÃO'),
-(286, '', '', '', '', '050.001.089', 'GÁS'),
-(287, '', '', '', '', '050.001.090', 'DRENAGEM DE ALAGAMENTOS'),
-(288, '', '', '', '', '050.001.091', 'LAVAGEM DE GARAGENS'),
-(289, '', '', '', '', '050.001.092', 'MONTAGEM E DESMONTAGEM DE MÓVEIS'),
-(290, '', '', '', '', '050.001.093', 'PARA-RAIOS E HIDRANTES'),
-(291, '', '', '', '', '050.001.094', 'CABEAMENTO DE REDE PARA COMPUTADOR'),
-(292, '', '', '', '', '050.001.095', 'FECH. DE SACADAS'),
-(293, '', '', '', '', '050.001.096', 'PUBLICIDADE E PROPAGANDA'),
-(294, '', '', '', '', '050.001.097', 'ADVOGADO'),
-(295, '', '', '', '', '050.001.098', 'CARPINTARIA'),
-(296, '', '', '', '', '050.001.099', 'INFILTRAÇÕES'),
-(297, '', '', '', '', '050.001.100', 'MUDANÇAS E TRANSPORTES'),
-(298, '', '', '', '', '050.001.101', 'FABRICAÇÃO DE MAQUINAS E EQUIPAMENTOS'),
-(299, '', '', '', '', '050.001.102', 'MANUTENÇÃO INDUSTRIAL EM MECÂNICA, PNEUMATICA E HIDRAULICA'),
-(300, '', '', '', '', '050.001.103', 'SISTEMAS SPDA'),
-(301, '', '', '', '', '050.001.104', 'CONSULTORIA'),
-(302, '', '', '', '', '050.001.105', 'REDES HIDRAULICAS DE INCENDIO'),
-(303, '', '', '', '', '050.001.106', 'ARQUITETOS'),
-(304, '', '', '', '', '050.001.107', 'GESSO'),
-(305, '', '', '', '', '050.001.108', 'AZULEJOS'),
-(306, '', '', '', '', '050.001.109', 'BOX DE BANHEIRO'),
-(307, '', '', '', '', '050.001.110', 'CONSULTORIA EM SEGURANÇA'),
-(308, '', '', '', '', '050.001.111', 'TREINAMENTO DO RT14 - PREVENÇÃO E COMBATE A INCÊNDIO'),
-(309, '', '', '', '', '050.001.112', 'GELOSIAS / PERSIANAS'),
-(310, '', '', '', '', '050.001.113', 'PERSIANAS - VERTICAIS E HORIZONTAIS (TECIDO-ALUMINIO)'),
-(311, '', '', '', '', '050.001.114', 'VIDRAÇARIA'),
-(312, '', '', '', '', '050.001.115', 'ESPELHOS'),
-(313, '', '', '', '', '050.001.116', 'ABERTURAS EM ALUMINIO E PVC'),
-(314, '', '', '', '', '050.001.117', 'PISOS '),
-(315, '', '', '', '', '050.001.118', 'FORNECEDORES EM GERAL'),
-(316, '', '', '', '', '050.001.119', 'TRANSPORTE EXECUTIVO'),
-(317, '', '', '', '', '050.001.120', 'CONFECÇÃO MASCULINA E FEMININA'),
-(318, '', '', '', '', '050.001.121', 'LOJA CESTA DE CAFÉ DA MANHÃ, PRESENTES E BAZAR'),
-(319, '', '', '', '', '050.001.122', 'PORTARIA '),
-(320, '', '', '', '', '050.001.123', 'MATERIAL EXPEDIENTE'),
-(321, '', '', '', '', '050.001.124', 'EQUIPAMENTOS, UTENSILIOS E UTILIDADES DOMESTICAS'),
-(322, '', '', '', '', '050.001.125', 'CONSERTINA'),
-(323, '', '', '', '', '050.001.126', 'ELEVADORES DE BOX DE GARAGEM'),
-(324, '', '', '', '', '050.001.127', 'INSTALAÇÃO REDE DE GAS'),
-(325, '', '', '', '', '050.001.128', 'ECONOMIA DE ENERGIA ELÉTRICA'),
-(326, '', '', '', '', '050.001.129', 'PORTA SANFONADA'),
-(327, '', '', '', '', '050.001.130', 'ZELADORIA'),
-(328, '', '', '', '', '050.001.131', 'EQUIPAMENTOS PARA LIMPEZA'),
-(329, '', '', '', '', '050.001.132', 'TRATAMENTO E LIMPEZA DE PISOS'),
-(330, '', '', '', '', '050.001.133', 'CORTE DE GRAMA'),
-(331, '', '', '', '', '050.001.134', 'CAÇA VAZAMENTO'),
-(332, '', '', '', '', '050.001.135', 'DIARISTA'),
-(333, '', '', '', '', '050.001.136', 'PASSADEIRA'),
-(334, '', '', '', '', '050.001.137', 'CUIDADOR DE IDOSOS'),
-(335, '', '', '', '', '050.001.138', 'BABA BABYSITTER'),
-(336, '', '', '', '', '050.001.139', 'COZINHEIRA'),
-(337, '', '', '', '', '050.001.140', 'PET SITTER'),
-(338, '', '', '', '', '050.001.141', 'MOTORISTA'),
-(339, '', '', '', '', '050.001.142', 'DOG WALKER'),
-(340, '', '', '', '', '050.001.143', 'BOM VIZINHO'),
-(341, '', '', '', '', '050.001.144', 'LAUDOS TECNICOS '),
-(342, '', '', '', '', '050.001.145', 'LAVANDERIA'),
-(343, '', '', '', '', '050.001.146', 'INSTALAÇÃO DE SISTEMA DE CAMERAS'),
-(344, '', '', '', '', '050.001.147', 'INFORMATICA'),
-(345, '', '', '', '', '050.001.148', 'SEGURANÇA ELETRONICA '),
-(346, '', '', '', '', '050.001.149', 'POS OBRA'),
-(347, '', '', '', '', '050.001.150', 'SERVICOS TEMPORARIOS'),
-(348, '', '', '', '', '050.001.151', 'REGULARIZAÇÃO DE IMÓVEIS');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `categorias_imagens`
---
-
-CREATE TABLE `categorias_imagens` (
-  `id` int(11) NOT NULL,
-  `thumbnail_principal` varchar(255) DEFAULT NULL,
-  `id_categoria` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `cidades`
 --
 
@@ -220,7 +33,7 @@ CREATE TABLE `cidades` (
   `meta_descricao` text,
   `slug` varchar(255) NOT NULL,
   `cidade` varchar(255) DEFAULT NULL,
-  `estado` int(11) DEFAULT '23'
+  `estado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -454,9 +267,12 @@ CREATE TABLE `sis_campo_modulo` (
 INSERT INTO `sis_campo_modulo` (`id`, `label`, `nome`, `valor_padrao`, `tipo_campo`, `id_modulo`, `listagem`, `required`, `ordem`) VALUES
 (18, 'estado', 'estado', '', 'I', 5, 0, 0, 0),
 (19, 'sigla', 'sigla', '', 'I', 5, 0, 0, 0),
-(75, 'Nome', 'nome', '', 'I', 12, 1, 1, 1),
-(76, 'Código', 'codigo', '', 'I', 12, 1, 1, 0),
-(99, 'Cidade', 'cidade', '', 'I', 20, 1, 1, 0);
+(99, 'Cidade', 'cidade', '', 'I', 20, 1, 1, 0),
+(102, 'Nome', 'nome', '', 'I', 21, 1, 1, 0),
+(103, 'Telefone', 'telefone', '', 'I', 21, 1, 1, 0),
+(104, 'E-mail', 'email', '', 'I', 21, 1, 1, 0),
+(105, 'Endereço', 'endereco', '', 'I', 21, 1, 1, 0),
+(106, 'CEP', 'cep', '', 'I', 21, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -480,7 +296,9 @@ CREATE TABLE `sis_fk_modulo` (
 --
 
 INSERT INTO `sis_fk_modulo` (`id`, `id_modulo`, `id_modulo_relacionado`, `id_campo_modulo_relacionado`, `nome`, `label`, `ordem`, `listagem`) VALUES
-(19, 20, 5, 19, 'estado', 'Estado', 1, 1);
+(19, 20, 5, 19, 'estado', 'Estado', 1, 1),
+(20, 21, 5, 18, 'estado', 'Estado', 0, 0),
+(21, 21, 20, 99, 'cidade', 'Cidade', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -521,8 +339,8 @@ CREATE TABLE `sis_modulos` (
 
 INSERT INTO `sis_modulos` (`id`, `label`, `icone`, `ordem`, `menu`, `nome`, `id_tipo_modulo`, `rota`, `item_modulo`, `items_modulo`, `imagem`, `galeria`, `nome_tabela`) VALUES
 (5, 'Estados', 'fa-circle-o', 0, 0, 'Estados', 3, 'estados', 'estado', 'estados', 0, 0, 'estados'),
-(12, 'Categorias', 'fa-circle-o', 0, 1, 'Categorias', 1, 'categorias', 'categoria', 'categorias', 0, 0, 'categorias'),
-(20, 'Cadastro de Cidades', 'ion-ios-location', 1, 1, 'Cidades', 1, 'cidades', 'cidade', 'cidades', 0, 0, 'cidades');
+(20, 'Cadastro de Cidades', 'ion-ios-location', 1, 0, 'Cidades', 1, 'cidades', 'cidade', 'cidades', 0, 0, 'cidades'),
+(21, 'Usuários', 'fa-circle-o', 0, 1, 'Usuarios', 1, 'usuarios', 'usuario', 'usuarios', 1, 0, 'usuarios');
 
 -- --------------------------------------------------------
 
@@ -839,7 +657,7 @@ CREATE TABLE `sis_roles` (
 --
 
 INSERT INTO `sis_roles` (`id`, `slug`, `name`, `permissions`, `created_at`, `updated_at`) VALUES
-(1, 'admins', 'Administradores', '{\"batata.view\":true,\"batata.create\":true,\"batata.update\":true,\"batata.delete\":true,\"clientes.view\":true,\"clientes.create\":true,\"clientes.update\":true,\"clientes.delete\":true,\"consultas.view\":true,\"consultas.create\":true,\"consultas.update\":true,\"consultas.delete\":true,\"estados.view\":true,\"estados.create\":true,\"estados.update\":true,\"estados.delete\":true,\"cidades.view\":true,\"cidades.create\":true,\"cidades.update\":true,\"cidades.delete\":true,\"tipos.view\":true,\"tipos.create\":true,\"tipos.update\":true,\"tipos.delete\":true,\"noticias.view\":true,\"noticias.create\":true,\"noticias.update\":true,\"noticias.delete\":true,\"fornecedores.view\":true,\"fornecedores.create\":true,\"fornecedores.update\":true,\"fornecedores.delete\":true,\"categorias.view\":true,\"categorias.create\":true,\"categorias.update\":true,\"categorias.delete\":true,\"solicitacoes.view\":true,\"solicitacoes.create\":true,\"solicitacoes.update\":true,\"solicitacoes.delete\":true,\"avaliacoes_fornecedores.view\":true,\"avaliacoes_fornecedores.create\":true,\"avaliacoes_fornecedores.update\":true,\"avaliacoes_fornecedores.delete\":true,\"avaliacoes_clientes.view\":true,\"avaliacoes_clientes.create\":true,\"avaliacoes_clientes.update\":true,\"avaliacoes_clientes.delete\":true,\"teste.view\":true,\"teste.create\":true,\"teste.update\":true,\"teste.delete\":true}', '2017-07-20 18:32:20', '2017-07-20 18:32:20'),
+(1, 'admins', 'Administradores', '{\"batata.view\":true,\"batata.create\":true,\"batata.update\":true,\"batata.delete\":true,\"clientes.view\":true,\"clientes.create\":true,\"clientes.update\":true,\"clientes.delete\":true,\"consultas.view\":true,\"consultas.create\":true,\"consultas.update\":true,\"consultas.delete\":true,\"estados.view\":true,\"estados.create\":true,\"estados.update\":true,\"estados.delete\":true,\"cidades.view\":true,\"cidades.create\":true,\"cidades.update\":true,\"cidades.delete\":true,\"tipos.view\":true,\"tipos.create\":true,\"tipos.update\":true,\"tipos.delete\":true,\"noticias.view\":true,\"noticias.create\":true,\"noticias.update\":true,\"noticias.delete\":true,\"fornecedores.view\":true,\"fornecedores.create\":true,\"fornecedores.update\":true,\"fornecedores.delete\":true,\"categorias.view\":true,\"categorias.create\":true,\"categorias.update\":true,\"categorias.delete\":true,\"solicitacoes.view\":true,\"solicitacoes.create\":true,\"solicitacoes.update\":true,\"solicitacoes.delete\":true,\"avaliacoes_fornecedores.view\":true,\"avaliacoes_fornecedores.create\":true,\"avaliacoes_fornecedores.update\":true,\"avaliacoes_fornecedores.delete\":true,\"avaliacoes_clientes.view\":true,\"avaliacoes_clientes.create\":true,\"avaliacoes_clientes.update\":true,\"avaliacoes_clientes.delete\":true,\"teste.view\":true,\"teste.create\":true,\"teste.update\":true,\"teste.delete\":true,\"usuarios.view\":true,\"usuarios.create\":true,\"usuarios.update\":true,\"usuarios.delete\":true}', '2017-07-20 18:32:20', '2017-07-20 18:32:20'),
 (3, 'usuarios', 'Usuários', '{\"clientes.view\":true,\"clientes.create\":true,\"clientes.update\":true,\"clientes.delete\":true,\"fornecedores.view\":true,\"fornecedores.create\":true,\"fornecedores.update\":true,\"fornecedores.delete\":true,\"categorias.view\":true,\"categorias.create\":true,\"categorias.update\":true,\"categorias.delete\":true,\"solicitacoes.view\":true,\"solicitacoes.create\":true,\"solicitacoes.update\":true,\"solicitacoes.delete\":true,\"avaliacoes_fornecedores.view\":true,\"avaliacoes_fornecedores.create\":true,\"avaliacoes_fornecedores.update\":true,\"avaliacoes_fornecedores.delete\":true,\"avaliacoes_clientes.view\":true,\"avaliacoes_clientes.create\":true,\"avaliacoes_clientes.update\":true,\"avaliacoes_clientes.delete\":true,\"cidades.view\":true,\"cidades.create\":true,\"cidades.update\":true,\"cidades.delete\":true}', '2017-07-20 20:29:49', '2017-07-20 20:29:49');
 
 -- --------------------------------------------------------
@@ -1167,21 +985,42 @@ INSERT INTO `solicitacoes_fornecedores` (`id`, `id_fornecedor`, `id_cliente`, `i
 (40, 1, 1, 34, '0', '0', 2),
 (41, 1, 1, 35, '0', '0', 2);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `thumbnail_principal` varchar(255) DEFAULT NULL,
+  `meta_keywords` text,
+  `meta_descricao` text,
+  `slug` varchar(255) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `telefone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `cep` varchar(255) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `cidade` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuarios_imagens`
+--
+
+CREATE TABLE `usuarios_imagens` (
+  `id` int(11) NOT NULL,
+  `thumbnail_principal` varchar(255) DEFAULT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `categorias`
---
-ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `categorias_imagens`
---
-ALTER TABLE `categorias_imagens`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cidades`
@@ -1318,19 +1157,23 @@ ALTER TABLE `solicitacoes_fornecedores`
   ADD KEY `id_fornecedor` (`id_fornecedor`);
 
 --
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `estado` (`estado`),
+  ADD KEY `cidade` (`cidade`);
+
+--
+-- Indexes for table `usuarios_imagens`
+--
+ALTER TABLE `usuarios_imagens`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `categorias`
---
-ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=349;
---
--- AUTO_INCREMENT for table `categorias_imagens`
---
-ALTER TABLE `categorias_imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `cidades`
 --
@@ -1370,17 +1213,17 @@ ALTER TABLE `sis_basic_info`
 -- AUTO_INCREMENT for table `sis_campo_modulo`
 --
 ALTER TABLE `sis_campo_modulo`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 --
 -- AUTO_INCREMENT for table `sis_fk_modulo`
 --
 ALTER TABLE `sis_fk_modulo`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `sis_modulos`
 --
 ALTER TABLE `sis_modulos`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `sis_permissions`
 --
@@ -1422,6 +1265,16 @@ ALTER TABLE `sis_users`
 ALTER TABLE `solicitacoes_fornecedores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
+-- AUTO_INCREMENT for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `usuarios_imagens`
+--
+ALTER TABLE `usuarios_imagens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- Constraints for dumped tables
 --
 
@@ -1443,6 +1296,13 @@ ALTER TABLE `fornecedores_categorias`
 ALTER TABLE `solicitacoes_fornecedores`
   ADD CONSTRAINT `fk_solic_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`),
   ADD CONSTRAINT `fk_solic_forn` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id`);
+
+--
+-- Constraints for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`estado`) REFERENCES `estados` (`id`),
+  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`cidade`) REFERENCES `cidades` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
