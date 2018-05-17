@@ -29,7 +29,7 @@
 						<hr>
 					</div>
 					<!-- /.box-header -->
-					<div class="box-body">
+					<div class="box-body hidden">
 
 						<table id="list-data-table" class="table table-bordered table-striped">
 							<thead>
@@ -103,7 +103,7 @@
 
 					</div>
 					<!-- /.box-body -->
-					<div class="box-footer">
+					<div class="box-footer hidden">
 						<?php if($current_role->hasAccess($current_module->nome_tabela.'.create')){ ?>
 							<a href="{{ url('admin/usuarios/add') }}" class="table-add"><i class="fa fa-plus"></i> Adicionar</a>
 						<?php } ?>

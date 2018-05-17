@@ -26,13 +26,13 @@
 						<ul class="nav nav-pills nav-justified">
 							<li class="active"><a data-toggle="pill" href="#info-tab">Informações</a></li>
 							<?php if($modulo->imagem){ ?>
-								<li><a data-toggle="pill" href="#image-tab">Imagem</a></li>
+								<li><a data-toggle="pill" href="#image-tab">Foto</a></li>
 							<?php } ?>
 							<?php /*<li><a data-toggle="pill" href="#image2-tab">Imagem Secundária</a></li><?php */ ?>
 							<?php if($modulo->galeria){ ?>
 								<li><a data-toggle="pill" href="#imagens-tab">Galeria</a></li>
 							<?php } ?>
-							<li><a data-toggle="pill" href="#seo-tab">SEO</a></li>
+							<li class="hidden"><a data-toggle="pill" href="#seo-tab">SEO</a></li>
 						</ul>
 						<div class="spacer"></div>
 						<form id="mainForm" class="form-horizontal" role="form" method="POST" action="{{ url('/admin/usuarios/save') }}">

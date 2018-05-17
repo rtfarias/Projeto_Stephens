@@ -57,7 +57,7 @@
 
 <div class="modalLoading"><!-- Place at bottom of page --></div>
 
-<body class="hold-transition skin-red-light fixed sidebar-mini">
+<body class="hold-transition skin-black-light fixed sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 

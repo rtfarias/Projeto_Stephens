@@ -1,7 +1,7 @@
 <!-- Logo -->
 <a href="{{ url('admin') }}" class="logo">
   <!-- mini logo for sidebar mini 50x50 pixels -->
-  <span class="logo-mini"><b>P</b>I</span>
+  <span class="logo-mini"><b>S</b>V</span>
   <!-- logo for regular state and mobile devices -->
   <span class="logo-lg"><b>Stephen</b> Viagens</span>
 </a>

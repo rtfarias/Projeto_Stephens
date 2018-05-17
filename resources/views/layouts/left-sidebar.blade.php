@@ -49,7 +49,7 @@
 					<?php } ?>
 				</ul>
 			</li>
-			<li class="treeview">
+			<li class="treeview hidden">
 				<a href="#">
 					<i class="fa fa-cog"></i>
 					<span>Configurações</span>
