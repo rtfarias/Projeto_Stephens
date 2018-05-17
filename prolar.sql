@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 17, 2018 at 01:48 AM
+-- Generation Time: May 17, 2018 at 02:17 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.6
 
@@ -268,11 +268,15 @@ INSERT INTO `sis_campo_modulo` (`id`, `label`, `nome`, `valor_padrao`, `tipo_cam
 (18, 'estado', 'estado', '', 'I', 5, 0, 0, 0),
 (19, 'sigla', 'sigla', '', 'I', 5, 0, 0, 0),
 (99, 'Cidade', 'cidade', '', 'I', 20, 1, 1, 0),
-(102, 'Nome', 'nome', '', 'I', 21, 1, 1, 0),
-(103, 'Telefone', 'telefone', '', 'I', 21, 1, 1, 0),
-(104, 'E-mail', 'email', '', 'I', 21, 1, 1, 0),
-(105, 'Endereço', 'endereco', '', 'I', 21, 1, 1, 0),
-(106, 'CEP', 'cep', '', 'I', 21, 1, 1, 0);
+(116, 'Nome', 'nome', '', 'I', 24, 1, 1, 0),
+(117, 'Telefone', 'telefone', '', 'I', 24, 1, 1, 0),
+(118, 'CEP', 'cep', '', 'I', 24, 1, 1, 0),
+(119, 'Endereço', 'endereco', '', 'I', 24, 1, 1, 0),
+(120, 'País', 'pais', '', 'I', 24, 1, 1, 0),
+(121, 'Estado', 'estado', '', 'I', 24, 1, 1, 0),
+(122, 'Cidade', 'cidade', '', 'I', 24, 1, 1, 0),
+(123, 'CPF', 'cpf', '', 'I', 24, 1, 1, 0),
+(124, 'E-mail', 'email', '', 'I', 24, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -296,9 +300,7 @@ CREATE TABLE `sis_fk_modulo` (
 --
 
 INSERT INTO `sis_fk_modulo` (`id`, `id_modulo`, `id_modulo_relacionado`, `id_campo_modulo_relacionado`, `nome`, `label`, `ordem`, `listagem`) VALUES
-(19, 20, 5, 19, 'estado', 'Estado', 1, 1),
-(20, 21, 5, 18, 'estado', 'Estado', 0, 0),
-(21, 21, 20, 99, 'cidade', 'Cidade', 1, 0);
+(19, 20, 5, 19, 'estado', 'Estado', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -340,7 +342,7 @@ CREATE TABLE `sis_modulos` (
 INSERT INTO `sis_modulos` (`id`, `label`, `icone`, `ordem`, `menu`, `nome`, `id_tipo_modulo`, `rota`, `item_modulo`, `items_modulo`, `imagem`, `galeria`, `nome_tabela`) VALUES
 (5, 'Estados', 'fa-circle-o', 0, 0, 'Estados', 3, 'estados', 'estado', 'estados', 0, 0, 'estados'),
 (20, 'Cadastro de Cidades', 'ion-ios-location', 1, 0, 'Cidades', 1, 'cidades', 'cidade', 'cidades', 0, 0, 'cidades'),
-(21, 'Usuários', 'fa-circle-o', 0, 1, 'Usuarios', 1, 'usuarios', 'usuario', 'usuarios', 1, 0, 'usuarios');
+(24, 'Usuários', 'fa-circle-o', 0, 1, 'Usuarios', 1, 'usuarios', 'usuario', 'usuarios', 1, 0, 'usuarios');
 
 -- --------------------------------------------------------
 
@@ -619,7 +621,8 @@ INSERT INTO `sis_persistences` (`id`, `user_id`, `code`, `created_at`, `updated_
 (413, 1, 'TBYNAzs7EjZ3scpmkqHycgFjPkGwtSfz', NULL, NULL),
 (415, 1, 'WYNhizmptfGNA58EymxIiOCDd0uPD2n8', NULL, NULL),
 (416, 1, 'lJDoFB8bVDwa5wncyLki7dKE1jBnLiaz', NULL, NULL),
-(422, 1, 'sZX9Slrm51kRK8y8L1MGmOZsZgIoyzzF', NULL, NULL);
+(422, 1, 'sZX9Slrm51kRK8y8L1MGmOZsZgIoyzzF', NULL, NULL),
+(423, 1, 'ZC3W5OqUyKhBNI6dLnI6fndsZ7kxbLig', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -920,7 +923,7 @@ CREATE TABLE `sis_users` (
 --
 
 INSERT INTO `sis_users` (`id`, `email`, `cnpj`, `password`, `permissions`, `responsavel`, `last_login`, `first_name`, `last_name`, `created_at`, `updated_at`, `receber_notificacoes`, `thumbnail_principal`, `id_condomino`, `id_criador`, `udid`, `latitude`, `longitude`, `telefone`, `telefone2`, `celular`, `descricao`, `endereco`, `estado`, `cidade`, `cep`, `numero`, `complemento`, `bairro`, `hora_inicio_manha`, `hora_fim_manha`, `hora_inicio_tarde`, `hora_fim_tarde`, `hora_inicio_noite`, `hora_fim_noite`) VALUES
-(1, 'admin@admin.com.br', '00.000.000/0000-00', '$2y$10$E3joI62VBhjAaC9xSM6FoOwIOOrGNk1S6cuhdMo/jQp4zERWaTMYG', NULL, 'admin', '2018-05-17 02:34:18', 'admin', '', '2017-02-21 05:00:34', '2018-05-16 23:34:18', 0, 'thumb_1526505279-Stephen.png', NULL, NULL, NULL, '-15.753151', '-47.880227200000036', '(54)9999-9999', '', '', '', 'Rua Ernesto Alves', 23, 1, '95020-360', '123456', '', 'Lurdes', '12:00:00', '00:00:00', '00:00:00', '00:00:00', '15:30:00', '17:00:00');
+(1, 'admin@admin.com.br', '00.000.000/0000-00', '$2y$10$E3joI62VBhjAaC9xSM6FoOwIOOrGNk1S6cuhdMo/jQp4zERWaTMYG', NULL, 'admin', '2018-05-17 03:01:19', 'admin', '', '2017-02-21 05:00:34', '2018-05-17 00:01:19', 0, 'thumb_1526505279-Stephen.png', NULL, NULL, NULL, '-15.753151', '-47.880227200000036', '(54)9999-9999', '', '', '', 'Rua Ernesto Alves', 23, 1, '95020-360', '123456', '', 'Lurdes', '12:00:00', '00:00:00', '00:00:00', '00:00:00', '15:30:00', '17:00:00');
 
 -- --------------------------------------------------------
 
@@ -999,11 +1002,13 @@ CREATE TABLE `usuarios` (
   `slug` varchar(255) NOT NULL,
   `nome` varchar(255) DEFAULT NULL,
   `telefone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `endereco` varchar(255) DEFAULT NULL,
   `cep` varchar(255) DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
-  `cidade` int(11) DEFAULT NULL
+  `endereco` varchar(255) DEFAULT NULL,
+  `pais` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `cidade` varchar(255) DEFAULT NULL,
+  `cpf` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1160,9 +1165,7 @@ ALTER TABLE `solicitacoes_fornecedores`
 -- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `estado` (`estado`),
-  ADD KEY `cidade` (`cidade`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `usuarios_imagens`
@@ -1213,17 +1216,17 @@ ALTER TABLE `sis_basic_info`
 -- AUTO_INCREMENT for table `sis_campo_modulo`
 --
 ALTER TABLE `sis_campo_modulo`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 --
 -- AUTO_INCREMENT for table `sis_fk_modulo`
 --
 ALTER TABLE `sis_fk_modulo`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `sis_modulos`
 --
 ALTER TABLE `sis_modulos`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `sis_permissions`
 --
@@ -1233,7 +1236,7 @@ ALTER TABLE `sis_permissions`
 -- AUTO_INCREMENT for table `sis_persistences`
 --
 ALTER TABLE `sis_persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=424;
 --
 -- AUTO_INCREMENT for table `sis_reminders`
 --
@@ -1296,13 +1299,6 @@ ALTER TABLE `fornecedores_categorias`
 ALTER TABLE `solicitacoes_fornecedores`
   ADD CONSTRAINT `fk_solic_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`),
   ADD CONSTRAINT `fk_solic_forn` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id`);
-
---
--- Constraints for table `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`estado`) REFERENCES `estados` (`id`),
-  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`cidade`) REFERENCES `cidades` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
