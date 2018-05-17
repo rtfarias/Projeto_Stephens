@@ -13,8 +13,8 @@ class UsuariosController extends Controller
 	private $fields;
 
     public function __construct(){
-		$this->modulo = \App\Gerador::find(21);
-		$this->fields = \App\CampoModulo::where('id_modulo',21)->get();
+		$this->modulo = \App\Gerador::find(24);
+		$this->fields = \App\CampoModulo::where('id_modulo',24)->get();
 	}
 
 	public function index(){

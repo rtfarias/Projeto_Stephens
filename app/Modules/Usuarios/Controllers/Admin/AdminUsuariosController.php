@@ -18,9 +18,9 @@ class AdminUsuariosController extends BaseController
     public function __construct(){
 		parent::__construct();
 		$this->middleware('auth');
-		$this->modulo = \App\Gerador::find(21);
-		$this->fields = \App\CampoModulo::where('id_modulo',21)->orderBy('ordem','ASC')->get();
-		$this->fks = \App\FkModulo::where('id_modulo',21)->orderBy('ordem','ASC')->get();
+		$this->modulo = \App\Gerador::find(24);
+		$this->fields = \App\CampoModulo::where('id_modulo',24)->orderBy('ordem','ASC')->get();
+		$this->fks = \App\FkModulo::where('id_modulo',24)->orderBy('ordem','ASC')->get();
 		$this->usuarios_m = new Usuarios();
 	}
 
