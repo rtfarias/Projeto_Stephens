@@ -246,7 +246,7 @@
 		$('#cep').mask('99999-999');
 		$('#cpf').mask('999.999.999-99');
 
-		$('#telefone').attr("placeholder", "(__)____-____)");
+		$('#telefone').attr("placeholder", "(__)____-____");
 		$('#cep').attr("placeholder", "_____-___");
 		$('#cpf').attr("placeholder", "___.___.___-__");
 
