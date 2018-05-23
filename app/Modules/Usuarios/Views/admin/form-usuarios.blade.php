@@ -239,6 +239,18 @@
 	</section>
 </div>
 <script type="text/javascript">
+	$(document).ready(function(){	
+		$('#telefone').mask('(99)9999-9999');
+		$('#telefone2').mask('(99)9999-9999');
+		$('#celular').mask('(99)99999-9999');
+		$('#cep').mask('99999-999');
+		$('#cpf').mask('999.999.999-99');
 
+		$('#telefone').attr("placeholder", "(__)____-____");
+		$('#cep').attr("placeholder", "_____-___");
+		$('#cpf').attr("placeholder", "___.___.___-__");
+
+	});	
 </script>
+
 @endsection

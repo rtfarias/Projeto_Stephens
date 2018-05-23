@@ -599,7 +599,11 @@ li:not(.active) a[data-toggle="pill"]{
 }
 
 .nav-pills li:not(.active) + li:not(.active){
-	border-left: 1px solid #e1e1e1!important;
+	border-left: 1px solid #171059!important;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+    border-top-color: #171059;
+    background:  #171059;
 }
 .taggle_placeholder{
 	display:none;
