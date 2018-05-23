@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 17, 2018 at 02:17 AM
+-- Generation Time: May 24, 2018 at 12:58 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.6
 
@@ -276,7 +276,8 @@ INSERT INTO `sis_campo_modulo` (`id`, `label`, `nome`, `valor_padrao`, `tipo_cam
 (121, 'Estado', 'estado', '', 'I', 24, 1, 1, 0),
 (122, 'Cidade', 'cidade', '', 'I', 24, 1, 1, 0),
 (123, 'CPF', 'cpf', '', 'I', 24, 1, 1, 0),
-(124, 'E-mail', 'email', '', 'I', 24, 1, 1, 0);
+(124, 'E-mail', 'email', '', 'I', 24, 1, 1, 0),
+(125, 'Senha', 'senha', '', 'INT', 24, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -621,8 +622,9 @@ INSERT INTO `sis_persistences` (`id`, `user_id`, `code`, `created_at`, `updated_
 (413, 1, 'TBYNAzs7EjZ3scpmkqHycgFjPkGwtSfz', NULL, NULL),
 (415, 1, 'WYNhizmptfGNA58EymxIiOCDd0uPD2n8', NULL, NULL),
 (416, 1, 'lJDoFB8bVDwa5wncyLki7dKE1jBnLiaz', NULL, NULL),
-(422, 1, 'sZX9Slrm51kRK8y8L1MGmOZsZgIoyzzF', NULL, NULL),
-(423, 1, 'ZC3W5OqUyKhBNI6dLnI6fndsZ7kxbLig', NULL, NULL);
+(423, 1, 'ZC3W5OqUyKhBNI6dLnI6fndsZ7kxbLig', NULL, NULL),
+(424, 1, '16UBfWhIXBHD2e7Z77W3SUPu8jujkKzs', NULL, NULL),
+(425, 1, '3B8rRyq4wqqA4H59QN5fwgGuSQQVu3PC', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -923,7 +925,7 @@ CREATE TABLE `sis_users` (
 --
 
 INSERT INTO `sis_users` (`id`, `email`, `cnpj`, `password`, `permissions`, `responsavel`, `last_login`, `first_name`, `last_name`, `created_at`, `updated_at`, `receber_notificacoes`, `thumbnail_principal`, `id_condomino`, `id_criador`, `udid`, `latitude`, `longitude`, `telefone`, `telefone2`, `celular`, `descricao`, `endereco`, `estado`, `cidade`, `cep`, `numero`, `complemento`, `bairro`, `hora_inicio_manha`, `hora_fim_manha`, `hora_inicio_tarde`, `hora_fim_tarde`, `hora_inicio_noite`, `hora_fim_noite`) VALUES
-(1, 'admin@admin.com.br', '00.000.000/0000-00', '$2y$10$E3joI62VBhjAaC9xSM6FoOwIOOrGNk1S6cuhdMo/jQp4zERWaTMYG', NULL, 'admin', '2018-05-17 03:01:19', 'admin', '', '2017-02-21 05:00:34', '2018-05-17 00:01:19', 0, 'thumb_1526505279-Stephen.png', NULL, NULL, NULL, '-15.753151', '-47.880227200000036', '(54)9999-9999', '', '', '', 'Rua Ernesto Alves', 23, 1, '95020-360', '123456', '', 'Lurdes', '12:00:00', '00:00:00', '00:00:00', '00:00:00', '15:30:00', '17:00:00');
+(1, 'admin@admin.com.br', '00.000.000/0000-00', '$2y$10$E3joI62VBhjAaC9xSM6FoOwIOOrGNk1S6cuhdMo/jQp4zERWaTMYG', NULL, 'admin', '2018-05-24 01:49:41', 'admin', '', '2017-02-21 05:00:34', '2018-05-23 22:49:41', 0, 'thumb_1526505279-Stephen.png', NULL, NULL, NULL, '-15.753151', '-47.880227200000036', '(54)9999-9999', '', '', '', 'Rua Ernesto Alves', 23, 1, '95020-360', '123456', '', 'Lurdes', '12:00:00', '00:00:00', '00:00:00', '00:00:00', '15:30:00', '17:00:00');
 
 -- --------------------------------------------------------
 
@@ -1008,7 +1010,8 @@ CREATE TABLE `usuarios` (
   `estado` varchar(255) DEFAULT NULL,
   `cidade` varchar(255) DEFAULT NULL,
   `cpf` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL
+  `email` varchar(255) DEFAULT NULL,
+  `senha` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1216,12 +1219,12 @@ ALTER TABLE `sis_basic_info`
 -- AUTO_INCREMENT for table `sis_campo_modulo`
 --
 ALTER TABLE `sis_campo_modulo`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 --
 -- AUTO_INCREMENT for table `sis_fk_modulo`
 --
 ALTER TABLE `sis_fk_modulo`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `sis_modulos`
 --
@@ -1236,7 +1239,7 @@ ALTER TABLE `sis_permissions`
 -- AUTO_INCREMENT for table `sis_persistences`
 --
 ALTER TABLE `sis_persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=424;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=426;
 --
 -- AUTO_INCREMENT for table `sis_reminders`
 --
