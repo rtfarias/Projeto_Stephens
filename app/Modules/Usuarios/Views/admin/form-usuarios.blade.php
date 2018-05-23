@@ -249,6 +249,7 @@
 		$('#telefone').attr("placeholder", "(__)____-____");
 		$('#cep').attr("placeholder", "_____-___");
 		$('#cpf').attr("placeholder", "___.___.___-__");
+		$('#senha').attr("type", "password");
 
 	});	
 </script>
