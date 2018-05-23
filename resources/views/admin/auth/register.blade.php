@@ -33,7 +33,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Registre-se!</p>
+    <!--p class="login-box-msg">Registre-se!</p-->
 
     {!! Form::open(['route' => 'admin/register']) !!}
       {{ csrf_field() }}
@@ -70,7 +70,7 @@
         <!-- /.col -->
       </div>
     {!! Form::close() !!}
-    <p><a href="{{ url('admin/register') }}" class="text-center">Registrar-se</a></p>
+    <!--p><a href="{{ url('admin/register') }}" class="text-center">Registrar-se</a></p-->
     <p><a href="{{ url('admin/forgot_password') }}">Esqueceu a Senha?</a></p>
 
   </div>

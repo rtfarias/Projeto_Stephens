@@ -87,7 +87,7 @@
 					<!-- /.col -->
 				</div>
 			{!! Form::close() !!}
-			<p><a href="{{ url('admin/register') }}" class="text-center">Registrar-se</a></p>
+			<!--p><a href="{{ url('admin/register') }}" class="text-center">Registrar-se</a></p-->
 			<p><a href="{{ url('admin/forgot_password') }}">Esqueceu a Senha?</a></p>
 
 		</div>
