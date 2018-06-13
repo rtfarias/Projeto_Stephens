@@ -29,7 +29,7 @@
 						<hr>
 					</div>
 					<!-- /.box-header -->
-					<div class="box-body hidden">
+					<div class="box-body ">
 
 						<table id="list-data-table" class="table table-bordered table-striped">
 							<thead>
