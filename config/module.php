@@ -5,7 +5,8 @@
 		    'modules' => [
 		'Estados',
 			'Cidades',
-			'Usuarios'
+			'Usuarios',
+			'Destinos'
 		
 			]
 		];
